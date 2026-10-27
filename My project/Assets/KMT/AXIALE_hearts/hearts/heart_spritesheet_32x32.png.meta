@@ -1,0 +1,373 @@
+fileFormatVersion: 2
+guid: b76858e183adff04d9a26acd4da2910b
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: heart_spritesheet_32x32_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 36
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6e5d7bb4ac01a64ab8b8288d50acfc7
+      internalID: -637911943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heart_spritesheet_32x32_1
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 36
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04d5e429f113e0d4eaa4565d151d48fa
+      internalID: -2109475064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heart_spritesheet_32x32_2
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 36
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1425d3f91e94348428013145d5977ab2
+      internalID: -2094706437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heart_spritesheet_32x32_3
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 36
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c31b57590615fd4c862fa00733b2715
+      internalID: -418399150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heart_spritesheet_32x32_4
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 36
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad986fb0506bf484295d7c8b72e661cf
+      internalID: 458450754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heart_spritesheet_32x32_5
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 6
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6572f7ab6b82c44882d57d00cea59d7
+      internalID: -856838134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heart_spritesheet_32x32_6
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 4
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b67d83cc82fd41449a8469f5766c8ad
+      internalID: -917288356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heart_spritesheet_32x32_7
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 2
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 296afd74971420f4da6863d0c8a3fbce
+      internalID: 1302340766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heart_spritesheet_32x32_8
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 4
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c4643d82a154f9478f5863f801a28ec
+      internalID: -1143271095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heart_spritesheet_32x32_9
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 4
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f4fba4f1734a224a9b4ef886b9c1b54
+      internalID: 699967325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 94b93dd4d1cc0a44984c006f4a7123e8
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      heart_spritesheet_32x32_0: -637911943
+      heart_spritesheet_32x32_1: -2109475064
+      heart_spritesheet_32x32_2: -2094706437
+      heart_spritesheet_32x32_3: -418399150
+      heart_spritesheet_32x32_4: 458450754
+      heart_spritesheet_32x32_5: -856838134
+      heart_spritesheet_32x32_6: -917288356
+      heart_spritesheet_32x32_7: 1302340766
+      heart_spritesheet_32x32_8: -1143271095
+      heart_spritesheet_32x32_9: 699967325
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

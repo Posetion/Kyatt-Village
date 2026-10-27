@@ -1,0 +1,856 @@
+fileFormatVersion: 2
+guid: f571b6ffd9d63b540ab19882fc437325
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: hearts_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 55
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7d956bbedbf5044181cf7a8fd3eb24f
+      internalID: 1460430627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_1
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 55
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c754d82fc0636848b4596e4b561827a
+      internalID: 1806433892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_2
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 55
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 535ddbac9a5a22a4ebdf08dbd1cc4294
+      internalID: 104739155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_3
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 55
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9db5443263f76bb46a8e3d2409efbd23
+      internalID: 854690413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_4
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 55
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a0d7871770438143bd7f4d1630a9909
+      internalID: -1538705582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_5
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 51
+        width: 37
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2e27608a4de2fe4abe6bb75de702c49
+      internalID: 1587045810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_6
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 53
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 927417deefa3fe7498a0210ee44d734e
+      internalID: -1484081824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_7
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 53
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a65283771da9e7540b1d407702b21845
+      internalID: 700959323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_8
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 52
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a1437701311bb14695b76016ed40eba
+      internalID: 964714452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 23
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faacce1ed5bdd6d4dbef040d93511d1f
+      internalID: -93140634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_10
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 39
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ce60ba55e5759c4d87dbf8cb17e719f
+      internalID: -2029160387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_11
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 23
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc067a77a2ba25f48a8f9e3712be5def
+      internalID: 1916184760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_12
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 39
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74b1519597e491d4b98a3cbe11f7f615
+      internalID: 1591364476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_13
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 23
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91b573c8100e26243999071c5c1ee78f
+      internalID: -771558018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_14
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 39
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d7bf4fd15ac8a448b1856afe532dc7e
+      internalID: 542223435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_15
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 23
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a534ade1f89bb54dbe8d6debe2f4697
+      internalID: -1594052063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_16
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 39
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90bf9e1c6e0384a468e85ddc3fc424bd
+      internalID: -1835467698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_17
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 23
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1db3bf5e088d224b8c863196f985e64
+      internalID: 2021070705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_18
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 39
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2e2c118991a626478c7926c65032884
+      internalID: -1286014494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_19
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 32
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d2567f82dc16f94cae82548ee4cbeda
+      internalID: 1989853144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_20
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 29
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dda46d54f23a7fe4cadc9b6011563707
+      internalID: -2034234725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_21
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 27
+        width: 18
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b44c0839152aad42a7f83bc603d1e08
+      internalID: 330166147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_22
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 31
+        width: 18
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6768f8e1548e5d047a2362b7125e29c2
+      internalID: 659361369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_23
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 7
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f0383ffa10dd2842a6095c22f9c5c4d
+      internalID: -1479728451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_24
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 7
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36cf39423eb41ab4392d950def421047
+      internalID: 941571237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_25
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 7
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbca5cadc9c00e34cbdcdd9068f993c8
+      internalID: -692636587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_26
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 7
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9e7c6950ae92c84db664dfe85c1916a
+      internalID: -135555334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_27
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 7
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fbe2db236677f94db78a1d18d95f9ca
+      internalID: 1492049895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_28
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 0
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 586e0d47bc555cd4686d1a021ae6b496
+      internalID: 1590266645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_29
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 4
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37fb16b2e431e704aa023286c385edd3
+      internalID: 1158559775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts_30
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 4
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4d799cf97d1234479b6307df08cf057
+      internalID: -1009014799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: c8bc4ca57be1fe746ab979dc1900954b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      hearts_0: 1460430627
+      hearts_1: 1806433892
+      hearts_10: -2029160387
+      hearts_11: 1916184760
+      hearts_12: 1591364476
+      hearts_13: -771558018
+      hearts_14: 542223435
+      hearts_15: -1594052063
+      hearts_16: -1835467698
+      hearts_17: 2021070705
+      hearts_18: -1286014494
+      hearts_19: 1989853144
+      hearts_2: 104739155
+      hearts_20: -2034234725
+      hearts_21: 330166147
+      hearts_22: 659361369
+      hearts_23: -1479728451
+      hearts_24: 941571237
+      hearts_25: -692636587
+      hearts_26: -135555334
+      hearts_27: 1492049895
+      hearts_28: 1590266645
+      hearts_29: 1158559775
+      hearts_3: 854690413
+      hearts_30: -1009014799
+      hearts_4: -1538705582
+      hearts_5: 1587045810
+      hearts_6: -1484081824
+      hearts_7: 700959323
+      hearts_8: 964714452
+      hearts_9: -93140634
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

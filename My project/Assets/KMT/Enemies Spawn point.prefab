@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5626347847533267973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8363975691252980184}
+  - component: {fileID: 6571326415861994696}
+  m_Layer: 0
+  m_Name: Enemies Spawn point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8363975691252980184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5626347847533267973}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 124.8, y: 3.15491, z: 137.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6571326415861994696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5626347847533267973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85528c03221766e41934044a15812172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnStyle: 2
+  singleSpawnChance: 5
+  enemyPrefabs:
+  - {fileID: 8566072279643860342, guid: eae5afd2ca8f27948ae84d2dc79a93df, type: 3}
+  minEnemies: 8
+  maxEnemies: 10
+  fireballPrefabs:
+  - {fileID: 2214023141601477686, guid: 8503bfe9b4be3e049980b0e8623a009a, type: 3}
+  minFireballs: 1
+  maxFireballs: 2
+  tankPrefabs:
+  - {fileID: 8649436877976082010, guid: d1ff444a0b598674eab520e171db2d9b, type: 3}
+  tankSpawnChance: 100
+  minTanks: 1
+  maxTanks: 3
+  elitePrefabs: []
+  eliteSpawnChance: 0
+  minElites: 1
+  maxElites: 1
+  spawnRadius: 30

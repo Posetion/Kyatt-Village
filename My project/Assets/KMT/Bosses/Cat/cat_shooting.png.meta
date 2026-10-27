@@ -1,0 +1,442 @@
+fileFormatVersion: 2
+guid: 1f46272c37e574d4f87cf9716edc043e
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: cat_shooting_0
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 0
+        width: 86
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21c8a6c7921189748832e19922ea21bd
+      internalID: -1135703167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_shooting_1
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 0
+        width: 232
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbf8ab16dcb74e94989357499fd82ec1
+      internalID: 146370701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_shooting_2
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 0
+        width: 236
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74d6f65bfe3743d49ba4fa96d8e32bc4
+      internalID: -60763084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_shooting_3
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 0
+        width: 236
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51331b396a5ce104ea263d1965a9991b
+      internalID: -1337317769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_shooting_4
+      rect:
+        serializedVersion: 2
+        x: 1684
+        y: 0
+        width: 226
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3c1c080d8a05cd469415f8f1d574fda
+      internalID: 2072333565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_shooting_5
+      rect:
+        serializedVersion: 2
+        x: 2068
+        y: 0
+        width: 236
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efd9a60dd8eccac46b1545d124733f3a
+      internalID: 1601678663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_shooting_6
+      rect:
+        serializedVersion: 2
+        x: 2452
+        y: 0
+        width: 222
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91332af144a227d41b5e0147f3e6b07b
+      internalID: 1548464051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_shooting_7
+      rect:
+        serializedVersion: 2
+        x: 2836
+        y: 0
+        width: 236
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f73748960d35a94aa7b7713230ee2ba
+      internalID: 1451733781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_shooting_8
+      rect:
+        serializedVersion: 2
+        x: 3224
+        y: 0
+        width: 232
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38a92998056c8dc47b002c1f743b16d1
+      internalID: 1067744075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_shooting_9
+      rect:
+        serializedVersion: 2
+        x: 3608
+        y: 0
+        width: 218
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb6ba117bc629944eb6d582b820ac394
+      internalID: 25021667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_shooting_10
+      rect:
+        serializedVersion: 2
+        x: 3988
+        y: 0
+        width: 236
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eba8a598ddd3e944b6f610244150509
+      internalID: 1891345597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_shooting_11
+      rect:
+        serializedVersion: 2
+        x: 4372
+        y: 0
+        width: 236
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa15f0c42c517174093ba84a099702e4
+      internalID: -845504992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_shooting_12
+      rect:
+        serializedVersion: 2
+        x: 4756
+        y: 0
+        width: 90
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f971901c40034f48a2e5d44233cd294
+      internalID: 627898021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 3a02c816c5a0f714da8ac44e10381b02
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      cat_shooting_0: -1135703167
+      cat_shooting_1: 146370701
+      cat_shooting_10: 1891345597
+      cat_shooting_11: -845504992
+      cat_shooting_12: 627898021
+      cat_shooting_2: -60763084
+      cat_shooting_3: -1337317769
+      cat_shooting_4: 2072333565
+      cat_shooting_5: 1601678663
+      cat_shooting_6: 1548464051
+      cat_shooting_7: 1451733781
+      cat_shooting_8: 1067744075
+      cat_shooting_9: 25021667
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

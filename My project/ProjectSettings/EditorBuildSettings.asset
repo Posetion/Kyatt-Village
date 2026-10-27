@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Room1.unity
+    guid: 943cf1a29086d844f91af2bb44cc229b
+  - enabled: 1
+    path: Assets/Scenes/Room2.unity
+    guid: bef1ae277b6dd154bae6cfe1bc77153a
+  - enabled: 1
+    path: Assets/Scenes/Room3.unity
+    guid: 76cf60ecd002fe14d8d830149bd348c4
+  - enabled: 1
+    path: Assets/Scenes/Room4.unity
+    guid: 58685b068a5edc943a9070892cf60991
+  - enabled: 1
+    path: Assets/Scenes/Room5.unity
+    guid: bbf48e17b641a0e488b3b00d3e44f704
+  - enabled: 1
+    path: Assets/Scenes/Room6.unity
+    guid: fe961e55728abc54f939dcd1240167ca
+  - enabled: 1
+    path: Assets/Scenes/Room7.unity
+    guid: 277f3e3809f301a45b38921f277a9486
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: 79b1b5fee1c5a4c46ac66935974296a2
+  - enabled: 1
+    path: Assets/Scenes/SecretBossFight.unity
+    guid: 8ea8c4b696b1ce041bfa9cc7b8e61d8b
+  - enabled: 1
+    path: Assets/Scenes/FinalExitBoss.unity
+    guid: 6e17288dd47f9484baae20d626a04e3e
+  - enabled: 0
+    path: Assets/Scenes/Chest Scene.unity
+    guid: b769751a86d967845af080637bb55383
+  m_configObjects:
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 96dd646f0c8c2974a909322670a188dc, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_UseUCBPForAssetBundles: 0

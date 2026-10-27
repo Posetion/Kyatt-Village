@@ -1,0 +1,101 @@
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace HeyHeyThere.PixelUIFree
+{
+    /// <summary>
+    /// A Button as the kit's theme draws one: Sprite Swap for its frame, and per state the label's and
+    /// icon's colours and the content's padding (a pressed button's content sits lower). The focus frame
+    /// shows while the button is selected. <see cref="on"/> holds the pressed look: a toggle button.
+    /// </summary>
+    public class PixelButton : Button
+    {
+        public TMP_Text label;
+        public Image icon;
+        public Graphic focus;
+        public Color textNormal = Color.white, textHover = Color.white, textPressed = Color.white, textDisabled = Color.gray;
+        public Color iconNormal = Color.white, iconHover = Color.white, iconPressed = Color.white, iconDisabled = Color.gray;
+        
+        [Header("Padding Settings")]
+        public RectOffset padding = new RectOffset();
+        public RectOffset pressedPadding = new RectOffset();
+        
+        [Header("Label Padding Settings")]
+        public RectOffset labelPadding = new RectOffset();
+        public RectOffset pressedLabelPadding = new RectOffset();
+
+        [SerializeField] bool isOn;
+
+        /// <summary>The label's text; an empty one hides the label, for an icon alone.</summary>
+        public string text
+        {
+            get => label.text;
+            set
+            {
+                label.text = value;
+                label.gameObject.SetActive(!string.IsNullOrEmpty(value));
+            }
+        }
+
+        public bool on
+        {
+            get => isOn;
+            set
+            {
+                isOn = value;
+                Refresh();
+            }
+        }
+
+        /// <summary>Shows the icon, or hides it for null.</summary>
+        public void SetIcon(Sprite sprite)
+        {
+            icon.sprite = sprite;
+            icon.gameObject.SetActive(sprite != null);
+        }
+
+        /// <summary>Draws the current state again, after its colours or sprites changed.</summary>
+        public void Refresh() => DoStateTransition(currentSelectionState, true);
+
+        protected override void DoStateTransition(SelectionState state, bool instant)
+        {
+            if (isOn && state != SelectionState.Disabled)
+                state = SelectionState.Pressed;
+                
+            base.DoStateTransition(state, instant);
+            
+            bool pressed = state == SelectionState.Pressed, hover = state == SelectionState.Highlighted, off = state == SelectionState.Disabled;
+            
+            if (label != null)
+                label.color = off ? textDisabled : pressed ? textPressed : hover ? textHover : textNormal;
+
+            if (icon != null)
+                icon.color = off ? iconDisabled : pressed ? iconPressed : hover ? iconHover : iconNormal;
+                
+            if (focus != null)
+                focus.enabled = currentSelectionState == SelectionState.Selected;
+                
+            // Handle main content padding (Layout Group on the button itself)
+            if (TryGetComponent(out HorizontalLayoutGroup layout))
+            {
+                var want = pressed ? pressedPadding : padding;
+                var now = layout.padding;
+                if (now.left != want.left || now.top != want.top || now.right != want.right || now.bottom != want.bottom)
+                    layout.padding = new RectOffset(want.left, want.right, want.top, want.bottom);
+            }
+
+            // Handle independent Label padding/margins if the label has a LayoutGroup or Vertical/Horizontal layout component
+            if (label != null && label.TryGetComponent(out LayoutGroup labelLayout))
+            {
+                var wantLabelPad = pressed ? pressedLabelPadding : labelPadding;
+                var nowLabelPad = labelLayout.padding;
+                if (nowLabelPad.left != wantLabelPad.left || nowLabelPad.top != wantLabelPad.top || 
+                    nowLabelPad.right != wantLabelPad.right || nowLabelPad.bottom != wantLabelPad.bottom)
+                {
+                    labelLayout.padding = new RectOffset(wantLabelPad.left, wantLabelPad.right, wantLabelPad.top, wantLabelPad.bottom);
+                }
+            }
+        }
+    }
+}

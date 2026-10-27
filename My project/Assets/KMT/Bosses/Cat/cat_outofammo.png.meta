@@ -1,0 +1,810 @@
+fileFormatVersion: 2
+guid: 441e7fb752f434141bd91c2dd681af60
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: cat_outofammo_0
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 0
+        width: 94
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5605c7e2c3663ac47b798086d5ecbd4e
+      internalID: 905099051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_1
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 0
+        width: 242
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 530ae0e4355297f4eaad1593d4565d93
+      internalID: 530226953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_2
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 0
+        width: 242
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95ef22994ac57a243bca6b011b94784c
+      internalID: 286800439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_3
+      rect:
+        serializedVersion: 2
+        x: 1297
+        y: 0
+        width: 241
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5e72beba2fc10647a948bd90e66b282
+      internalID: 821652371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_4
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 0
+        width: 236
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 998ec2e509367774caba02c456e4ffcf
+      internalID: -1142955716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_5
+      rect:
+        serializedVersion: 2
+        x: 2063
+        y: 0
+        width: 247
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 161a3c81394b2d344b2454c047a6bb2e
+      internalID: 1506621278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_6
+      rect:
+        serializedVersion: 2
+        x: 2446
+        y: 0
+        width: 231
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fd10f0404bf9434287ddfffe20fbd7d
+      internalID: -1075975737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_7
+      rect:
+        serializedVersion: 2
+        x: 2830
+        y: 0
+        width: 246
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9250599313c125c4cb72ccf0315df253
+      internalID: -294910501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_8
+      rect:
+        serializedVersion: 2
+        x: 3218
+        y: 0
+        width: 242
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14bc67cc7af96e94fb66ed4b566037bf
+      internalID: -2139512100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_9
+      rect:
+        serializedVersion: 2
+        x: 3601
+        y: 0
+        width: 231
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c2d47af1c0e655459a472a03c2130a3
+      internalID: -138475850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_10
+      rect:
+        serializedVersion: 2
+        x: 3985
+        y: 0
+        width: 115
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffe3afe0be12e4d428064635e863fb65
+      internalID: 333008508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_11
+      rect:
+        serializedVersion: 2
+        x: 4111
+        y: 0
+        width: 115
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acb77ea19c3ea50488cd038b31605b19
+      internalID: 1415801544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_12
+      rect:
+        serializedVersion: 2
+        x: 4368
+        y: 0
+        width: 241
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00d672547305fd34a8275701f71d6127
+      internalID: 1809703474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_13
+      rect:
+        serializedVersion: 2
+        x: 4751
+        y: 0
+        width: 247
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c9593d1246dfae44ae14e46da67e2b2
+      internalID: -1241003392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_14
+      rect:
+        serializedVersion: 2
+        x: 5134
+        y: 0
+        width: 247
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4178d2bf2fc9474fb06f14150df6354
+      internalID: 2144049238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_15
+      rect:
+        serializedVersion: 2
+        x: 5518
+        y: 0
+        width: 246
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c70a0dc4f83342e4ba3c306be67b53ab
+      internalID: -1528292046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_16
+      rect:
+        serializedVersion: 2
+        x: 5906
+        y: 0
+        width: 231
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b2339248d25f364cbdc09c869e5fe08
+      internalID: 1862574886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_17
+      rect:
+        serializedVersion: 2
+        x: 6289
+        y: 0
+        width: 95
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9aa29c92156811843b943fe6c25f2856
+      internalID: 1673119671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_18
+      rect:
+        serializedVersion: 2
+        x: 6678
+        y: 0
+        width: 100
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 152a9d00c010bb64ba1db1e1e050c9a8
+      internalID: 80919792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_19
+      rect:
+        serializedVersion: 2
+        x: 7061
+        y: 0
+        width: 116
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 843356d1f91863b488053d8a6e7fab0b
+      internalID: -429721215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_20
+      rect:
+        serializedVersion: 2
+        x: 7444
+        y: 0
+        width: 116
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04989e31528ebc942b1607cef0915d72
+      internalID: -1131462792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_21
+      rect:
+        serializedVersion: 2
+        x: 7828
+        y: 0
+        width: 94
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44b9145abab665f428f230a1d5593d72
+      internalID: -444705344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_22
+      rect:
+        serializedVersion: 2
+        x: 8211
+        y: 0
+        width: 94
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a71112d5f733aa34dbf2a33e86dbcd94
+      internalID: 1231762092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_23
+      rect:
+        serializedVersion: 2
+        x: 8594
+        y: 0
+        width: 95
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f83b4d014c244034dbfb5abd1e394e30
+      internalID: 1495382735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_24
+      rect:
+        serializedVersion: 2
+        x: 8977
+        y: 0
+        width: 100
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f06933dac6f0da4a81c006736edd56f
+      internalID: -473990674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_25
+      rect:
+        serializedVersion: 2
+        x: 9366
+        y: 0
+        width: 94
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b43c2f10e9ded7f47b738061e198446b
+      internalID: -325209668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_26
+      rect:
+        serializedVersion: 2
+        x: 9744
+        y: 0
+        width: 100
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bee516456e53753418e0ed6aa881f729
+      internalID: 1702641646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_27
+      rect:
+        serializedVersion: 2
+        x: 10127
+        y: 0
+        width: 100
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 804e16371627e4246ac91f2acad8d9c2
+      internalID: 1366991387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_outofammo_28
+      rect:
+        serializedVersion: 2
+        x: 10510
+        y: 0
+        width: 100
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93c9749007e5e184da9e0720c3d22634
+      internalID: -772697808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 48870aeca35f5524f81d30551f8cd713
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      cat_outofammo_0: 905099051
+      cat_outofammo_1: 530226953
+      cat_outofammo_10: 333008508
+      cat_outofammo_11: 1415801544
+      cat_outofammo_12: 1809703474
+      cat_outofammo_13: -1241003392
+      cat_outofammo_14: 2144049238
+      cat_outofammo_15: -1528292046
+      cat_outofammo_16: 1862574886
+      cat_outofammo_17: 1673119671
+      cat_outofammo_18: 80919792
+      cat_outofammo_19: -429721215
+      cat_outofammo_2: 286800439
+      cat_outofammo_20: -1131462792
+      cat_outofammo_21: -444705344
+      cat_outofammo_22: 1231762092
+      cat_outofammo_23: 1495382735
+      cat_outofammo_24: -473990674
+      cat_outofammo_25: -325209668
+      cat_outofammo_26: 1702641646
+      cat_outofammo_27: 1366991387
+      cat_outofammo_28: -772697808
+      cat_outofammo_3: 821652371
+      cat_outofammo_4: -1142955716
+      cat_outofammo_5: 1506621278
+      cat_outofammo_6: -1075975737
+      cat_outofammo_7: -294910501
+      cat_outofammo_8: -2139512100
+      cat_outofammo_9: -138475850
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

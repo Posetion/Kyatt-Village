@@ -1,0 +1,579 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1101 &-8548328374035877491
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: hurt
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 5304003712996014415}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.42307693
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1102 &-7285957136683690745
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CatBossReload
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions:
+  - {fileID: -2462035277077709484}
+  - {fileID: 8553739892396408007}
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 7eff1ad6486d5124fba01ebedcf79a40, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1101 &-6014280690293934650
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: reload
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -7285957136683690745}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.80263156
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1102 &-5797804069982827393
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CatMelee
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions:
+  - {fileID: -2522034997827761918}
+  - {fileID: -4662095135102269418}
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 32292ac2fba8ce247934c53f8c2cf8c3, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1101 &-4662095135102269418
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: hurt
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 5304003712996014415}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.75409836
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &-2522034997827761918
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: isClose
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 5071068575494107569}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.75409836
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &-2462035277077709484
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions: []
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 5071068575494107569}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.9305556
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1102 &-705044000785018937
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CatBossWal
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions:
+  - {fileID: 3168551446507263636}
+  - {fileID: 7789624528893151215}
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 96e1321848c2b8d4895a02ea505886be, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1107 &-338963554961670341
+AnimatorStateMachine:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Base Layer
+  m_ChildStates:
+  - serializedVersion: 1
+    m_State: {fileID: 5071068575494107569}
+    m_Position: {x: 250, y: -20, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 8847479149385834704}
+    m_Position: {x: 390, y: -160, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -7285957136683690745}
+    m_Position: {x: 140, y: -210, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 5304003712996014415}
+    m_Position: {x: 570, y: -50, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -5797804069982827393}
+    m_Position: {x: 470, y: 200, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -705044000785018937}
+    m_Position: {x: 240, y: 220, z: 0}
+  m_ChildStateMachines: []
+  m_AnyStateTransitions: []
+  m_EntryTransitions: []
+  m_StateMachineTransitions: {}
+  m_StateMachineBehaviours: []
+  m_AnyStatePosition: {x: 50, y: 20, z: 0}
+  m_EntryPosition: {x: 50, y: 120, z: 0}
+  m_ExitPosition: {x: 800, y: 120, z: 0}
+  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
+  m_DefaultState: {fileID: 5071068575494107569}
+--- !u!91 &9100000
+AnimatorController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CatBoss
+  serializedVersion: 5
+  m_AnimatorParameters:
+  - m_Name: IsWalking
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: shoot
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: reload
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: hurt
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: isClose
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  m_AnimatorLayers:
+  - serializedVersion: 5
+    m_Name: Base Layer
+    m_StateMachine: {fileID: -338963554961670341}
+    m_Mask: {fileID: 0}
+    m_Motions: []
+    m_Behaviours: []
+    m_BlendingMode: 0
+    m_SyncedLayerIndex: -1
+    m_DefaultWeight: 0
+    m_IKPass: 0
+    m_SyncedLayerAffectsTiming: 0
+    m_Controller: {fileID: 9100000}
+--- !u!1101 &737027043482424241
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsWalking
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -705044000785018937}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.42307693
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &3168551446507263636
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsWalking
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 5071068575494107569}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.516129
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1102 &5071068575494107569
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CatBoss
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions:
+  - {fileID: 737027043482424241}
+  - {fileID: -8548328374035877491}
+  - {fileID: 7407322032129925517}
+  - {fileID: 7433488207657135201}
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: d3bdddb5fc2a7b147aafd5861b320d17, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &5304003712996014415
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CatBossHurt
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions:
+  - {fileID: 9018442831559687498}
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: aa5f1e8ae5e9ac94a8b17567c44ccb8a, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1101 &7338218554183123018
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: hurt
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 5304003712996014415}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.80263156
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &7407322032129925517
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: shoot
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 8847479149385834704}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.42307693
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &7433488207657135201
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: isClose
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -5797804069982827393}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.69467384
+  m_TransitionOffset: 0
+  m_ExitTime: 0.42307693
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &7789624528893151215
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: hurt
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 5304003712996014415}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.516129
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &8553739892396408007
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: hurt
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 5304003712996014415}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.9305556
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1102 &8847479149385834704
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CatBossShot
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions:
+  - {fileID: -6014280690293934650}
+  - {fileID: 7338218554183123018}
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 190d8224d6404f1408de42821da698bf, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1101 &9018442831559687498
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions: []
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 5071068575494107569}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.28571433
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
