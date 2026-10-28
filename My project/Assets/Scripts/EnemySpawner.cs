@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -48,6 +49,7 @@ public class EnemySpawner : MonoBehaviour
     public float spawnRadius = 3f;
 
     private int aliveEnemyCount = 0;
+    private bool warnedNavMeshUnavailable;
 
     void Start()
     {
@@ -227,9 +229,52 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnObject(GameObject prefabToSpawn)
     {
-        Vector2 randomDirection = Random.insideUnitCircle * spawnRadius;
-        Vector3 spawnPosition = transform.position + new Vector3(randomDirection.x, 0f, randomDirection.y);
-        Instantiate(prefabToSpawn, spawnPosition, transform.rotation);
+        NavMeshAgent prefabAgent = prefabToSpawn.GetComponent<NavMeshAgent>();
+        if (prefabAgent != null)
+        {
+            NavMeshQueryFilter filter = new NavMeshQueryFilter
+            {
+                agentTypeID = prefabAgent.agentTypeID,
+                areaMask = prefabAgent.areaMask
+            };
+
+            float sampleDistance = Mathf.Max(spawnRadius + 1f, 2f);
+            bool foundSpawnPosition = false;
+            Vector3 spawnPosition = transform.position;
+            for (int attempt = 0; attempt < 8; attempt++)
+            {
+                Vector2 randomDirection = Random.insideUnitCircle * spawnRadius;
+                Vector3 candidatePosition = transform.position + new Vector3(randomDirection.x, 0f, randomDirection.y);
+                if (!NavMesh.SamplePosition(candidatePosition, out NavMeshHit hit, sampleDistance, filter))
+                {
+                    continue;
+                }
+
+                spawnPosition = hit.position;
+                foundSpawnPosition = true;
+                break;
+            }
+
+            if (!foundSpawnPosition)
+            {
+                if (!warnedNavMeshUnavailable)
+                {
+                    Debug.LogWarning(gameObject.name + " could not find a reachable NavMesh spawn position near the player. Check the room's baked NavMesh data.", this);
+                    warnedNavMeshUnavailable = true;
+                }
+
+                return;
+            }
+
+            warnedNavMeshUnavailable = false;
+            Instantiate(prefabToSpawn, spawnPosition, transform.rotation);
+            aliveEnemyCount++;
+            return;
+        }
+
+        Vector2 fireballDirection = Random.insideUnitCircle * spawnRadius;
+        Vector3 fireballSpawnPosition = transform.position + new Vector3(fireballDirection.x, 0f, fireballDirection.y);
+        Instantiate(prefabToSpawn, fireballSpawnPosition, transform.rotation);
 
         aliveEnemyCount++;
     }

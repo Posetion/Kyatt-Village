@@ -94,12 +94,17 @@ namespace StarterAssets
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
+        private float _baseMoveSpeed;
+        private float _baseSprintSpeed;
 
         private const float _threshold = 0.01f;
         private bool _hasAnimator;
 
         private void Awake()
         {
+            _baseMoveSpeed = MoveSpeed;
+            _baseSprintSpeed = SprintSpeed;
+
             if (_mainCamera == null)
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -156,6 +161,12 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+        }
+
+        public void SetMovementSpeedMultiplier(float multiplier)
+        {
+            MoveSpeed = _baseMoveSpeed * multiplier;
+            SprintSpeed = _baseSprintSpeed * multiplier;
         }
 
         private void LateUpdate()

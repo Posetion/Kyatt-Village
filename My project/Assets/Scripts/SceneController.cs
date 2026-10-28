@@ -122,14 +122,13 @@ public class SceneController : MonoBehaviour
     {
         roomCount = 0;
 
-        // Reset player stats, health, and timer cleanly at the start of a brand new run
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.playerMaxHealth = 1000f;
-            GameManager.Instance.playerCurrentHealth = 1000f;
-            GameManager.Instance.totalCoins = 0;
-            GameManager.Instance.collectedPowerUpIcons.Clear();
-            GameManager.Instance.levelElapsedTime = 0f; // <-- Added timer reset
+            GameManager.Instance.ResetPlayerStatsForNewRun();
+        }
+        else
+        {
+            Debug.LogError("Cannot start a new run because GameManager.Instance is missing.");
         }
 
         LoadRandomRoom();

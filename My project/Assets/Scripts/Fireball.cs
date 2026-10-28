@@ -70,11 +70,7 @@ public class Fireball : MonoBehaviour
             healthBar.value = currentHealth;
         }
 
-        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-        if (playerObject != null)
-        {
-            player = playerObject.transform;
-        }
+        FindPlayer();
 
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
@@ -89,41 +85,27 @@ public class Fireball : MonoBehaviour
     {
         if (isDead) return;
 
-        // Move towards the player
-        if (player != null)
-        {
-            Vector3 targetPosition = player.position + Vector3.up * targetHeight;
-            Vector3 direction = (targetPosition - transform.position).normalized;
-            transform.position += direction * moveSpeed * Time.deltaTime;
-            transform.LookAt(targetPosition);
-        }
-        
-        // (Mouse click & touch detection removed completely!)
+        if (player == null) FindPlayer();
+        if (player == null) return;
+
+        Vector3 targetPosition = player.position + Vector3.up * targetHeight;
+        Vector3 direction = (targetPosition - transform.position).normalized;
+        transform.position += direction * moveSpeed * Time.deltaTime;
+        transform.LookAt(targetPosition);
     }
 
-    // Handles triggers entering the fireball (Player attacks or Player contact)
+    private void FindPlayer()
+    {
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null) player = playerObject.transform;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (isDead) return;
 
-        // 1. Check if hit by the Player's Attack Zone / Weapon Hitbox
-        // (Make sure your player's attack zone has the tag "PlayerAttack" or similar, 
-        //  or check whichever tag/layer your other enemies use to detect player attacks)
-        if (other.CompareTag("PlayerAttack") || other.name.Contains("Weapon") || other.name.Contains("AttackZone"))
-        {
-            // You can pull damage directly from the player's weapon script if they have one, 
-            // or use a default damage value (e.g., 25f).
-            float damageToTake = 25f; 
-            
-            // Optional: If your weapon script has a damage variable, you can fetch it:
-            // WeaponScript weapon = other.GetComponent<WeaponScript>();
-            // if (weapon != null) damageToTake = weapon.damage;
-
-            TakeDamage(damageToTake);
-        }
-
-        // 2. Check if the player body itself touched the fireball
-        if (other.CompareTag("Player") || other.transform.IsChildOf(player))
+        // 1. Check if the player body itself touched the fireball
+        if (other.CompareTag("Player") || (player != null && other.transform.IsChildOf(player)))
         {
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
             if (playerHealth == null)
@@ -138,6 +120,12 @@ public class Fireball : MonoBehaviour
             }
 
             Die();
+        }
+        // 2. Check if hit by the Player's Attack Zone / Weapon Hitbox (Safe name check - no undefined tags!)
+        else if (other.name.Contains("Weapon") || other.name.Contains("AttackZone") || other.name.Contains("PlayerAttack"))
+        {
+            float damageToTake = 25f; 
+            TakeDamage(damageToTake);
         }
     }
 

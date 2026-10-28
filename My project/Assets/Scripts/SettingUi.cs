@@ -125,16 +125,7 @@ public class SettingUI : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.totalCoins = 0;
-            GameManager.Instance.playerMaxHealth = 500f;
-            GameManager.Instance.playerCurrentHealth = 1000f;
-            GameManager.Instance.playerDamage = 15f;
-            GameManager.Instance.playerAttackSpeed = 1f;
-            GameManager.Instance.playerMovementSpeed = 5f;
-            GameManager.Instance.playerDefense = 0f;
-            GameManager.Instance.playerLuck = 0f;
-            GameManager.Instance.playerRegenAmount = 0f;
-            GameManager.Instance.collectedPowerUpIcons.Clear();
+            GameManager.Instance.ResetPlayerStatsForNewRun();
         }
 
         for (int i = 1; i <= 3; i++)

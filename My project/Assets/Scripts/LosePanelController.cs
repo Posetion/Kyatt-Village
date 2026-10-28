@@ -21,6 +21,8 @@ public class LosePanelController : MonoBehaviour
 
         if (GameManager.Instance != null)
         {
+            GameManager.Instance.EndRunAndCheckRecord();
+
             if (finalTimeText != null)
             {
                 finalTimeText.text = $"Time: {GameManager.Instance.GetFormattedCurrentTime()}";

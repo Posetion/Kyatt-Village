@@ -231,6 +231,16 @@ public class UiManager : MonoBehaviour
     {
         Debug.Log("[UiManager] Showing Lose Panel.");
 
+        gameManager = GameManager.Instance;
+        if (gameManager != null)
+        {
+            gameManager.EndRunAndCheckRecord();
+        }
+        else
+        {
+            Debug.LogError("[UiManager] Cannot save or display the run record because GameManager.Instance is missing.");
+        }
+
         if (GameHUD != null)
         {
             GameHUD.SetActive(false); // Hide standard gameplay HUD when dead
@@ -241,20 +251,20 @@ public class UiManager : MonoBehaviour
             losePanel.SetActive(true);
 
             // Populate run times and best record
-            if (GameManager.Instance != null)
+            if (gameManager != null)
             {
                 if (finalTimeText != null)
                 {
-                    finalTimeText.text = $"Time: {GameManager.Instance.GetFormattedCurrentTime()}";
+                    finalTimeText.text = $"Time: {gameManager.GetFormattedCurrentTime()}";
                 }
 
                 if (bestRecordText != null)
                 {
-                    bestRecordText.text = $"Best Record: {GameManager.Instance.GetFormattedBestTime()}";
+                    bestRecordText.text = $"Best Record: {gameManager.GetFormattedBestTime()}";
                 }
 
                 // --- POPULATE COLLECTED POWER-UP ICONS ---
-                PopulateLosePanelPowerUps(GameManager.Instance.collectedPowerUpIcons);
+                PopulateLosePanelPowerUps(gameManager.collectedPowerUpIcons);
             }
         }
         else

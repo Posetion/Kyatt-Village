@@ -1,3 +1,4 @@
+using StarterAssets;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -7,10 +8,10 @@ public class PlayerHealth : MonoBehaviour
 
     private bool hasSpunOnAppear = false;
     private float spinTimer = 0f;
+    
     [Header("Arrow Spin Settings")]
-    [SerializeField] private float spinDuration = 1.0f; // How long the spin lasts in seconds
-    [SerializeField] private float spinSpeed = 720f;   // Degrees per second (720 = 2 full rotations)
-
+    [SerializeField] private float spinDuration = 1.0f; 
+    [SerializeField] private float spinSpeed = 720f;   
 
     [Header("Game Manager Reference")]
     [SerializeField] private GameManager gameManager; 
@@ -45,11 +46,6 @@ public class PlayerHealth : MonoBehaviour
         { 
             if (gameManager != null) 
             {
-                if (value > gameManager.playerCurrentHealth && value == maxHealth)
-                {
-                    Debug.LogWarning($"[Health Debug] Health suddenly refilled to max! Stack trace:\n{System.Environment.StackTrace}");
-                }
-
                 gameManager.playerCurrentHealth = value; 
             }
         }
@@ -89,6 +85,16 @@ public class PlayerHealth : MonoBehaviour
     private bool isInvincible;
     private float invincibilityTimer;
 
+    private void OnEnable()
+    {
+        // Auto-register with VirtualInput the moment the player spawns in any map!
+        StarterAssetsInputs inputs = GetComponent<StarterAssetsInputs>();
+        if (inputs != null && VirtualInput.Instance != null)
+        {
+            VirtualInput.RegisterPlayer(inputs);
+        }
+    }
+
     void Start()
     {
         if (player == null) player = gameObject; 
@@ -101,15 +107,12 @@ public class PlayerHealth : MonoBehaviour
         if (vfxSpawnPoint == null) vfxSpawnPoint = transform;
         if (uiManager == null) uiManager = UiManager.instance;
 
-        // Keep it hidden at start. Respects your armature setup!
         if (playerArrow != null)
         {
             playerArrow.SetActive(false);
         }
 
-        // Randomly select one exit zone script out of the available ones
         SelectRandomExitZone();
-
         UpdateUIHealth();
     }
 
@@ -140,7 +143,6 @@ public class PlayerHealth : MonoBehaviour
         {
             int randomIndex = Random.Range(0, exitZones.Length);
             selectedExitZone = exitZones[randomIndex].GetComponent<FinishZone>();
-            Debug.Log($"[PlayerHealth] Selected active exit zone: {selectedExitZone.gameObject.name}");
         }
         else
         {
@@ -148,14 +150,12 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-  private void CheckEnemiesAndHandleArrow()
+    private void CheckEnemiesAndHandleArrow()
     {
         if (gameManager == null || selectedExitZone == null || playerArrow == null) return;
 
-        // Check GameManager's enemy defeat status using your property
         bool allEnemiesCleared = gameManager.AreAllEnemiesDefeated;
 
-        // If enemies are NOT cleared, reset the spin trigger so it spins again next time
         if (!allEnemiesCleared)
         {
             hasSpunOnAppear = false;
@@ -164,7 +164,6 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
 
-        // If they ARE cleared and the arrow wasn't active yet, turn it on and start the spin timer
         if (!playerArrow.activeSelf)
         {
             playerArrow.SetActive(true);
@@ -172,27 +171,19 @@ public class PlayerHealth : MonoBehaviour
             spinTimer = spinDuration;
         }
 
-        // Handle the spin effect when it first appears
         if (!hasSpunOnAppear)
         {
             spinTimer -= Time.deltaTime;
-            
-            // Spin around the Y-axis (or whichever local axis you prefer)
             playerArrow.transform.Rotate(Vector3.up, spinSpeed * Time.deltaTime, Space.Self);
 
             if (spinTimer <= 0f)
             {
-                hasSpunOnAppear = true; // Spin finished, move to pointing mode
+                hasSpunOnAppear = true; 
             }
         }
         else
         {
-            // Once the spin is done, continuously point toward the active exit zone
             Vector3 direction = selectedExitZone.transform.position - playerArrow.transform.position;
-
-            // OPTIONAL: Uncomment if you want the arrow to only rotate horizontally (flat compass style)
-            // direction.y = 0f;
-
             if (direction != Vector3.zero)
             {
                 playerArrow.transform.rotation = Quaternion.LookRotation(direction);

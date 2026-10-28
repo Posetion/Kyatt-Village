@@ -6,11 +6,6 @@ public class EnemyAI : MonoBehaviour
 {
     [Header("Movement & Separation")]
     public float moveSpeed = 3.5f;
-    public float separationRadius = 1.5f; 
-    public float separationWeight = 1.2f; 
-
-
-
 
     [Header("Health")]
     public float maxHealth = 100f;
@@ -22,33 +17,25 @@ public class EnemyAI : MonoBehaviour
     public float attackAnimationDuration = 0.5f;
 
     [Header("Room Difficulty Scaling")]
-    [Tooltip("How much speed is added per room completed.")]
-    [SerializeField] private float speedScalingPerRoom = 0.15f;
-    [Tooltip("Percentage increase of health per room completed (e.g., 0.10 = +10% per room).")]
-    [SerializeField] private float healthScalingPerRoom = 0.12f;
-    [Tooltip("How much attack damage is added per room completed.")]
-    [SerializeField] private float damageScalingPerRoom = 2f;
+    [SerializeField] private float speedScalingPerRoom = 0.05f;
+    [SerializeField] private float healthScalingPerRoom = 0.05f;
+    [SerializeField] private float damageScalingPerRoom = 5f;
 
     [Header("Sounds & Specific Volumes")]
     public AudioClip attackedSound;
-    [Range(0f, 1f)] public float attackedVolume = 1.0f; // Volume slider for hit sound
-
+    [Range(0f, 1f)] public float attackedVolume = 1.0f;
     public AudioClip attackSound;
-    [Range(0f, 1f)] public float attackVolume = 1.0f;   // Volume slider for attack sound
-
+    [Range(0f, 1f)] public float attackVolume = 1.0f;
     public AudioClip deathSound;
-    [Range(0f, 1f)] public float deathVolume = 1.0f;    // Volume slider for death sound
+    [Range(0f, 1f)] public float deathVolume = 1.0f;
 
     [Header("VFX")]
     public GameObject attackedVFX;
     public Vector3 attackedVFXOffset = new Vector3(0f, 1f, 0f);
-
     public GameObject attackVFX;
     public Vector3 attackVFXOffset = new Vector3(0f, 1f, 0f);
-
     public GameObject deathVFX;
     public Vector3 deathVFXOffset = new Vector3(0f, 0.5f, 0f);
-
     public float vfxDestroyTime = 3f;
 
     [Header("Loot / Coins")]
@@ -63,16 +50,22 @@ public class EnemyAI : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private AudioSource audioSource;
-    private NavMeshAgent agent;
+    private NavMeshAgent navAgent;
 
     private float currentHealth;
     private float lastAttackTime = -999f;
     private float attackEndTime = 0f;
+    private float nextDestinationUpdateTime;
+    private const float destinationUpdateInterval = 0.2f;
+    private const float destinationUpdateDistance = 0.5f;
 
     private bool isDead;
     private bool touchingPlayer;
     private bool walking;
     private bool isAttacking;
+    private bool warnedOffNavMesh;
+    private bool warnedDestinationFailure;
+    private bool warnedInvalidPath;
 
     void Start()
     {
@@ -81,12 +74,10 @@ public class EnemyAI : MonoBehaviour
             Debug.LogWarning(gameObject.name + " does not have the Enemy tag!");
         }
 
-        // Calculate scaling based on current room count from SceneController
         int roomCount = (SceneController.Instance != null) ? SceneController.Instance.GetRoomCount() : 0;
 
-        // Scale Stats
-        moveSpeed += roomCount * speedScalingPerRoom;
-        maxHealth += maxHealth * (roomCount * healthScalingPerRoom);
+        moveSpeed *= 1f + (roomCount * speedScalingPerRoom);
+        maxHealth *= 1f + (roomCount * healthScalingPerRoom);
         attackDamage += roomCount * damageScalingPerRoom;
 
         currentHealth = maxHealth;
@@ -94,22 +85,26 @@ public class EnemyAI : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        agent = GetComponent<NavMeshAgent>();
+        navAgent = GetComponent<NavMeshAgent>();
 
-        if (agent != null)
+        if (navAgent == null)
         {
-            agent.speed = moveSpeed;
-            agent.updateRotation = false; 
-            agent.updateUpAxis = false;   
-            agent.stoppingDistance = 0.2f; 
-            agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance; 
+            Debug.LogError(gameObject.name + " needs a NavMeshAgent to move.", this);
+        }
+        else
+        {
+            navAgent.speed = moveSpeed;
+            navAgent.stoppingDistance = 0.3f;
+            navAgent.updateRotation = false;
+            navAgent.updateUpAxis = false;
+            navAgent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+            navAgent.autoRepath = true;
         }
 
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
-
         audioSource.playOnAwake = false;
 
         Rigidbody rb = GetComponent<Rigidbody>();
@@ -132,21 +127,20 @@ public class EnemyAI : MonoBehaviour
     void FindPlayer()
     {
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-
-        if (playerObject == null)
-        {
-            playerObject = GameObject.Find("PlayerArmature");
-        }
-
-        if (playerObject != null)
-        {
-            player = playerObject.transform;
-        }
+        if (playerObject == null) playerObject = GameObject.Find("PlayerArmature");
+        if (playerObject != null) player = playerObject.transform;
     }
 
     void Update()
     {
         if (isDead) return;
+
+        // Continuously ensure we have a valid reference to the active player
+        if (player == null)
+        {
+            FindPlayer();
+            if (player == null) return;
+        }
 
         if (isAttacking)
         {
@@ -156,48 +150,112 @@ public class EnemyAI : MonoBehaviour
             }
             else
             {
-                if (agent != null && agent.enabled) agent.isStopped = true;
+                SetAgentStopped(true);
+                SetWalking(false);
                 return;
             }
         }
 
-        if (player == null)
-        {
-            FindPlayer();
-            if (player == null) return;
-        }
-
         if (touchingPlayer)
         {
-            if (agent != null && agent.enabled) agent.isStopped = true;
+            SetAgentStopped(true);
             SetWalking(false);
             return;
         }
 
-        if (agent != null && agent.enabled)
+        if (navAgent == null || !navAgent.isActiveAndEnabled)
         {
-            agent.isStopped = false;
-            MoveTowardPlayer();
+            SetWalking(false);
+            return;
+        }
+
+        if (!navAgent.isOnNavMesh)
+        {
+            SetWalking(false);
+            if (!warnedOffNavMesh)
+            {
+                Debug.LogWarning(gameObject.name + " NavMeshAgent is not on a baked NavMesh. Check the room's NavMesh data and the enemy spawn position.", this);
+                warnedOffNavMesh = true;
+            }
+            return;
+        }
+
+        warnedOffNavMesh = false;
+        NavMeshQueryFilter filter = new NavMeshQueryFilter
+        {
+            agentTypeID = navAgent.agentTypeID,
+            areaMask = navAgent.areaMask
+        };
+        float playerSampleDistance = Mathf.Max(navAgent.height * 2f, 20f);
+        if (!NavMesh.SamplePosition(player.position, out NavMeshHit playerNavMeshHit, playerSampleDistance, filter))
+        {
+            SetWalking(false);
+            if (!warnedDestinationFailure)
+            {
+                Debug.LogWarning(gameObject.name + " could not find a NavMesh position for the player.", this);
+                warnedDestinationFailure = true;
+            }
+            return;
+        }
+
+        if (Time.time < nextDestinationUpdateTime &&
+            (navAgent.pathPending ||
+             (navAgent.hasPath && (playerNavMeshHit.position - navAgent.destination).sqrMagnitude < destinationUpdateDistance * destinationUpdateDistance)))
+        {
+            UpdateWalkingState();
+            return;
+        }
+
+        nextDestinationUpdateTime = Time.time + destinationUpdateInterval;
+        navAgent.isStopped = false;
+        if (!navAgent.SetDestination(playerNavMeshHit.position))
+        {
+            SetWalking(false);
+            if (!warnedDestinationFailure)
+            {
+                Debug.LogWarning(gameObject.name + " could not set a NavMesh destination for the player.", this);
+                warnedDestinationFailure = true;
+            }
+            return;
+        }
+
+        warnedDestinationFailure = false;
+        UpdateWalkingState();
+    }
+
+    void UpdateWalkingState()
+    {
+        if (navAgent == null || !navAgent.isActiveAndEnabled) return;
+
+        if (!navAgent.pathPending && navAgent.pathStatus == NavMeshPathStatus.PathInvalid)
+        {
+            SetWalking(false);
+            if (!warnedInvalidPath)
+            {
+                Debug.LogWarning(gameObject.name + " has no valid NavMesh path to the player. Check that both are on connected walkable NavMesh.", this);
+                warnedInvalidPath = true;
+            }
+            return;
+        }
+
+        warnedInvalidPath = false;
+        Vector3 direction = navAgent.velocity;
+        direction.y = 0f;
+        bool moving = direction.sqrMagnitude > 0.01f;
+
+        SetWalking(moving);
+
+        if (moving && spriteRenderer != null && direction.x != 0f)
+        {
+            spriteRenderer.flipX = direction.x < 0f;
         }
     }
 
-    void MoveTowardPlayer()
+    void SetAgentStopped(bool stopped)
     {
-        if (player == null || agent == null) return;
-
-        agent.SetDestination(player.position);
-
-        Vector3 horizontalVelocity = new Vector3(agent.velocity.x, 0f, agent.velocity.z);
-        bool isMoving = horizontalVelocity.sqrMagnitude > 0.01f;
-        
-        SetWalking(isMoving);
-
-        if (isMoving && spriteRenderer != null)
+        if (navAgent != null && navAgent.isActiveAndEnabled && navAgent.isOnNavMesh)
         {
-            if (Mathf.Abs(agent.velocity.x) > 0.05f)
-            {
-                spriteRenderer.flipX = agent.velocity.x < 0f;
-            }
+            navAgent.isStopped = stopped;
         }
     }
 
@@ -220,14 +278,7 @@ public class EnemyAI : MonoBehaviour
     void OnMouseDown()
     {
         if (isDead) return;
-
-        float damageToDeal = 15f; 
-
-        if (GameManager.Instance != null)
-        {
-            damageToDeal = GameManager.Instance.playerDamage;
-        }
-
+        float damageToDeal = (GameManager.Instance != null) ? GameManager.Instance.playerDamage : 15f;
         TakeDamage(damageToDeal);
     }
 
@@ -247,10 +298,7 @@ public class EnemyAI : MonoBehaviour
 
     void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            touchingPlayer = false;
-        }
+        if (collision.gameObject.CompareTag("Player")) touchingPlayer = false;
     }
 
     void OnTriggerEnter(Collider other)
@@ -269,28 +317,20 @@ public class EnemyAI : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            touchingPlayer = false;
-        }
+        if (other.CompareTag("Player")) touchingPlayer = false;
     }
 
     void AttackPlayer()
     {
-        if (isDead || !touchingPlayer || Time.time < lastAttackTime + attackCooldown)
-        {
-            return;
-        }
+        if (isDead || !touchingPlayer || Time.time < lastAttackTime + attackCooldown) return;
 
         lastAttackTime = Time.time;
         isAttacking = true;
         attackEndTime = Time.time + attackAnimationDuration;
         walking = false;
+        SetAgentStopped(true);
 
-        if (animator != null)
-        {
-            animator.Play("Attack01", 0, 0f);
-        }
+        if (animator != null) animator.Play("Attack01", 0, 0f);
 
         if (attackSound != null)
         {
@@ -300,43 +340,23 @@ public class EnemyAI : MonoBehaviour
 
         if (attackVFX != null)
         {
-            Vector3 spawnPosition = transform.position + attackVFXOffset;
-            GameObject effect = Instantiate(attackVFX, spawnPosition, Quaternion.identity);
+            GameObject effect = Instantiate(attackVFX, transform.position + attackVFXOffset, Quaternion.identity);
             Destroy(effect, vfxDestroyTime);
         }
 
-        PlayerHealth playerHealth = null;
+        PlayerHealth playerHealth = player != null ? player.GetComponent<PlayerHealth>() : null;
+        if (playerHealth == null && player != null) playerHealth = player.GetComponentInParent<PlayerHealth>();
 
-        if (player != null)
-        {
-            playerHealth = player.GetComponent<PlayerHealth>();
-            if (playerHealth == null)
-            {
-                playerHealth = player.GetComponentInParent<PlayerHealth>();
-            }
-        }
-
-        if (playerHealth != null)
-        {
-            playerHealth.TakeDamage(attackDamage);
-        }
+        if (playerHealth != null) playerHealth.TakeDamage(attackDamage);
     }
 
     public void TakeDamage(float damage)
     {
         if (isDead) return;
 
-        currentHealth -= damage;
+        currentHealth = Mathf.Max(0f, currentHealth - damage);
 
-        if (currentHealth < 0f)
-        {
-            currentHealth = 0f;
-        }
-
-        if (healthBar != null)
-        {
-            healthBar.value = currentHealth;
-        }
+        if (healthBar != null) healthBar.value = currentHealth;
 
         if (attackedSound != null)
         {
@@ -346,46 +366,31 @@ public class EnemyAI : MonoBehaviour
 
         if (attackedVFX != null)
         {
-            Vector3 spawnPosition = transform.position + attackedVFXOffset;
-            GameObject effect = Instantiate(attackedVFX, spawnPosition, Quaternion.identity);
+            GameObject effect = Instantiate(attackedVFX, transform.position + attackedVFXOffset, Quaternion.identity);
             Destroy(effect, vfxDestroyTime);
         }
 
-        if (currentHealth <= 0f)
-        {
-            Die();
-        }
+        if (currentHealth <= 0f) Die();
     }
 
     void Die()
     {
         if (isDead) return;
-
         isDead = true;
         touchingPlayer = false;
+        SetAgentStopped(true);
+        if (navAgent != null) navAgent.enabled = false;
 
-        if (agent != null)
-        {
-            agent.enabled = false;
-        }
-
-        Collider[] colliders = GetComponents<Collider>();
-        foreach (Collider col in colliders)
+        foreach (Collider col in GetComponents<Collider>())
         {
             col.enabled = false;
         }
 
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.EnemyDefeated();
-        }
+        if (GameManager.Instance != null) GameManager.Instance.EnemyDefeated();
 
         DropCoins();
 
-        if (animator != null)
-        {
-            animator.Play("Death", 0, 0f);
-        }
+        if (animator != null) animator.Play("Death", 0, 0f);
 
         if (AudioManager.Instance != null && deathSound != null)
         {
@@ -394,8 +399,7 @@ public class EnemyAI : MonoBehaviour
 
         if (deathVFX != null)
         {
-            Vector3 spawnPosition = transform.position + deathVFXOffset;
-            GameObject effect = Instantiate(deathVFX, spawnPosition, Quaternion.identity);
+            GameObject effect = Instantiate(deathVFX, transform.position + deathVFXOffset, Quaternion.identity);
             Destroy(effect, vfxDestroyTime);
         }
 

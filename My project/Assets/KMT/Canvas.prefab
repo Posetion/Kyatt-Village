@@ -12135,7 +12135,7 @@ PrefabInstance:
     - target: {fileID: 1735661476058831889, guid: 893ba65578f466b46866db2ac9843323, type: 3}
       propertyPath: StarterAssetsInputs
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4395615033083468615, guid: 97c35bce1bda69244ad91c05798e2762, type: 3}
     - target: {fileID: 2608877798954917550, guid: 893ba65578f466b46866db2ac9843323, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

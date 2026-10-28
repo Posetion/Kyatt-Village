@@ -407,16 +407,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  separationRadius: 3
-  separationWeight: 2
   maxHealth: 75
   healthBar: {fileID: 4505305117905109059}
   attackDamage: 20
   attackCooldown: 1
   attackAnimationDuration: 0.5
   speedScalingPerRoom: 1.2
-  healthScalingPerRoom: 1.2
-  damageScalingPerRoom: 2
+  healthScalingPerRoom: 0.05
+  damageScalingPerRoom: 5
   attackedSound: {fileID: 8300000, guid: 918e88d621e3a8449b4231be8dc3cb4e, type: 3}
   attackedVolume: 0.2
   attackSound: {fileID: 8300000, guid: 6023e10bfe3a1c64d9f618bf938a2f21, type: 3}

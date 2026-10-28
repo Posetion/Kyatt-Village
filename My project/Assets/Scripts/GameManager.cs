@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using StarterAssets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -45,6 +46,15 @@ public class GameManager : MonoBehaviour
     private bool powerUpTriggered = false;
     private bool isInitialized = false;
     private string currentSceneName = "";
+    private float startingPlayerMaxHealth;
+    private float startingPlayerDamage;
+    private float startingPlayerAttackSpeed;
+    private float startingPlayerMovementSpeed;
+    private float startingPlayerDefense;
+    private float startingPlayerLuck;
+    private float startingPlayerRegenAmount;
+    private ThirdPersonController movementController;
+    private float appliedMovementSpeedMultiplier = float.NaN;
 
     private void Awake()
     {
@@ -52,6 +62,13 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            startingPlayerMaxHealth = playerMaxHealth;
+            startingPlayerDamage = playerDamage;
+            startingPlayerAttackSpeed = playerAttackSpeed;
+            startingPlayerMovementSpeed = playerMovementSpeed;
+            startingPlayerDefense = playerDefense;
+            startingPlayerLuck = playerLuck;
+            startingPlayerRegenAmount = playerRegenAmount;
             playerCurrentHealth = playerMaxHealth;
             
             // Load saved best record time on startup
@@ -129,6 +146,24 @@ public class GameManager : MonoBehaviour
                 UiManager.instance.UpdateSecondTimeUI(levelElapsedTime);
             }
         }
+
+        ApplyMovementSpeedToPlayer();
+    }
+
+    private void ApplyMovementSpeedToPlayer()
+    {
+        if (movementController == null)
+        {
+            movementController = FindFirstObjectByType<ThirdPersonController>();
+            if (movementController == null) return;
+            appliedMovementSpeedMultiplier = float.NaN;
+        }
+
+        float multiplier = GetMovementSpeedMultiplier();
+        if (Mathf.Approximately(appliedMovementSpeedMultiplier, multiplier)) return;
+
+        movementController.SetMovementSpeedMultiplier(multiplier);
+        appliedMovementSpeedMultiplier = multiplier;
     }
 
     // ==========================================
@@ -136,14 +171,18 @@ public class GameManager : MonoBehaviour
     // ==========================================
     public void EndRunAndCheckRecord()
     {
-        // Check if current run time is higher than the saved best time (longest survival)
+        float savedBestRunTime = PlayerPrefs.GetFloat(BestTimeKey, 0f);
+        BestRunTime = Mathf.Max(BestRunTime, savedBestRunTime);
+
+        // The record is the longest survival time across all runs.
         if (levelElapsedTime > BestRunTime)
         {
             BestRunTime = levelElapsedTime;
-            PlayerPrefs.SetFloat(BestTimeKey, BestRunTime);
-            PlayerPrefs.Save();
             Debug.Log($"[GameManager] New Record Time Saved: {GetFormattedBestTime()}");
         }
+
+        PlayerPrefs.SetFloat(BestTimeKey, BestRunTime);
+        PlayerPrefs.Save();
     }
 
     public string GetFormattedCurrentTime()
@@ -258,6 +297,29 @@ public class GameManager : MonoBehaviour
         {
             UiManager.instance.UpdateMoney(totalCoins);
         }
+    }
+
+    public void ResetPlayerStatsForNewRun()
+    {
+        playerMaxHealth = startingPlayerMaxHealth;
+        playerCurrentHealth = startingPlayerMaxHealth;
+        playerDamage = startingPlayerDamage;
+        playerAttackSpeed = startingPlayerAttackSpeed;
+        playerMovementSpeed = startingPlayerMovementSpeed;
+        playerDefense = startingPlayerDefense;
+        playerLuck = startingPlayerLuck;
+        playerRegenAmount = startingPlayerRegenAmount;
+        totalCoins = 0;
+        levelElapsedTime = 0f;
+        collectedPowerUpIcons.Clear();
+        ApplyMovementSpeedToPlayer();
+    }
+
+    public float GetMovementSpeedMultiplier()
+    {
+        return startingPlayerMovementSpeed > 0f
+            ? playerMovementSpeed / startingPlayerMovementSpeed
+            : 1f;
     }
 
 // Add this public property to GameManager to check status easily
