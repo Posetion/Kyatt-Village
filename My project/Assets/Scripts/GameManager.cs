@@ -259,4 +259,8 @@ public class GameManager : MonoBehaviour
             UiManager.instance.UpdateMoney(totalCoins);
         }
     }
+
+// Add this public property to GameManager to check status easily
+public bool AreAllEnemiesDefeated => (totalEnemies > 0 && defeatedEnemies >= totalEnemies) || (expectedSpawnersCount == 0);
+
 }

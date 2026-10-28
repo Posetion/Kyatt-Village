@@ -13,13 +13,13 @@ public class AudioManager : MonoBehaviour
 
     [Header("Scene Music Clips (Drag in Inspector)")]
     [Tooltip("Music that plays on your Title/Menu scene.")]
-    [SerializeField] private AudioClip titleMusicClip;     
+    [SerializeField] private AudioClip titleMusicClip;    
 
     [Tooltip("Music that plays during standard gameplay/levels.")]
-    [SerializeField] private AudioClip startMusicClip;     
+    [SerializeField] private AudioClip startMusicClip;    
 
     [Tooltip("Music that plays in the shop. Leave empty (None) to turn background music completely OFF in the shop.")]
-    [SerializeField] private AudioClip shopMusicClip;      
+    [SerializeField] private AudioClip shopMusicClip;     
 
     [Header("Optional Starting Clips")]
     [SerializeField] private AudioClip startNatureClip;
@@ -136,7 +136,6 @@ public class AudioManager : MonoBehaviour
             }
             else
             {
-                // Background music turns completely OFF if shopMusicClip is empty/None
                 StopMusic(); 
             }
         }
@@ -275,7 +274,7 @@ public class AudioManager : MonoBehaviour
         if (sfxAudioSource != null)
         {
             sfxAudioSource.enabled = true;
-            sfxAudioSource.volume = sfxMuted ? 0f : musicMuted ? 0f : sfxVolume; 
+            sfxAudioSource.volume = sfxMuted ? 0f : sfxVolume; 
         }
 
         if (natureAudioSource != null)

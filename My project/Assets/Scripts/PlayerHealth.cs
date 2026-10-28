@@ -11,6 +11,13 @@ public class PlayerHealth : MonoBehaviour
     [Header("UI Integration")]
     [SerializeField] private UiManager uiManager; 
 
+    [Header("Exit Objective & Arrow")]
+    [Tooltip("Drag the 2D arrow sprite GameObject here.")]
+    [SerializeField] private GameObject playerArrow;
+    [Tooltip("Height offset above the player's head.")]
+    [SerializeField] private Vector3 arrowOffset = new Vector3(0f, 1.5f, 0f);
+    private FinishZone selectedExitZone;
+
     [Header("Regeneration")]
     public float regenAmountPerSecond 
     {
@@ -31,7 +38,6 @@ public class PlayerHealth : MonoBehaviour
         { 
             if (gameManager != null) 
             {
-                // Debug check if health unexpectedly refills
                 if (value > gameManager.playerCurrentHealth && value == maxHealth)
                 {
                     Debug.LogWarning($"[Health Debug] Health suddenly refilled to max! Stack trace:\n{System.Environment.StackTrace}");
@@ -60,7 +66,7 @@ public class PlayerHealth : MonoBehaviour
     [Range(0f, 1f)] public float attackedVolume = 1.0f;
     
     public AudioClip deathSound;
-    [Range(0f, 1f)] public float deathVolume = 1.0f;    
+    [Range(0f, 1f)] public float deathVolume = 1.0f;     
 
     private float lastHurtSoundTime = -999f; 
     private float hurtSoundCooldown = 2.5f; 
@@ -88,22 +94,76 @@ public class PlayerHealth : MonoBehaviour
         if (vfxSpawnPoint == null) vfxSpawnPoint = transform;
         if (uiManager == null) uiManager = UiManager.instance;
 
+        // Unparent the arrow so player flipping/rotation doesn't break its tracking
+        if (playerArrow != null)
+        {
+            playerArrow.transform.SetParent(null);
+            playerArrow.SetActive(false);
+        }
+
+        // Randomly select one exit zone script out of the available ones (2 to 4)
+        SelectRandomExitZone();
+
         UpdateUIHealth();
     }
 
     void Update()
     {
+        if (isDead) return;
+
         if (isInvincible)
         {
             invincibilityTimer -= Time.deltaTime;
             if (invincibilityTimer <= 0f) isInvincible = false;
         }
 
-        if (regenAmountPerSecond > 0f && currentHealth < maxHealth && !isDead)
+        if (regenAmountPerSecond > 0f && currentHealth < maxHealth)
         {
             currentHealth += regenAmountPerSecond * Time.deltaTime;
             currentHealth = Mathf.Min(currentHealth, maxHealth); 
             UpdateUIHealth();
+        }
+
+        CheckEnemiesAndHandleArrow();
+    }
+
+    private void SelectRandomExitZone()
+    {
+        GameObject[] exitZones = GameObject.FindGameObjectsWithTag("ExitZone");
+        if (exitZones.Length > 0)
+        {
+            int randomIndex = Random.Range(0, exitZones.Length);
+            selectedExitZone = exitZones[randomIndex].GetComponent<FinishZone>();
+            Debug.Log($"[PlayerHealth] Selected active exit zone: {selectedExitZone.gameObject.name}");
+        }
+        else
+        {
+            Debug.LogWarning("[PlayerHealth] No GameObjects with tag 'ExitZone' found in the scene!");
+        }
+    }
+
+    private void CheckEnemiesAndHandleArrow()
+    {
+        if (gameManager == null || selectedExitZone == null || playerArrow == null) return;
+
+        // Check GameManager's enemy defeat status
+        bool allEnemiesCleared = gameManager.AreAllEnemiesDefeated;
+
+        // Toggle arrow visibility based on GameManager
+        playerArrow.SetActive(allEnemiesCleared);
+
+        // If all enemies are defeated, keep the arrow locked to the player and continuously pointing at the exit
+        if (allEnemiesCleared)
+        {
+            // Keep arrow positioned right above the player
+            playerArrow.transform.position = transform.position + arrowOffset;
+
+            // Continuously calculate angle toward the exit zone
+            Vector3 direction = selectedExitZone.transform.position - playerArrow.transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            
+            // Apply rotation (+ 180f accounts for your left-pointing arrow sprite)
+            playerArrow.transform.rotation = Quaternion.Euler(0, 0, angle + 180f);
         }
     }
 
@@ -117,7 +177,6 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= finalDamage;
         if (currentHealth < 0f) currentHealth = 0f;
         
-        Debug.Log($"[Damage Taken] Took {finalDamage} damage. Current Health is now: {currentHealth}");
         UpdateUIHealth();
 
         isInvincible = true;
@@ -152,64 +211,48 @@ public class PlayerHealth : MonoBehaviour
     }
 
     void Die()
-{
-    if (isDead) return;
-    isDead = true;
+    {
+        if (isDead) return;
+        isDead = true;
 
-    // 1. Freeze time completely so nothing moves
-    Time.timeScale = 0f;
+        if (playerArrow != null) playerArrow.SetActive(false);
 
-    // 2. Save and check best time record
-    if (GameManager.Instance != null)
-    {
-        GameManager.Instance.EndRunAndCheckRecord();
-    }
+        Time.timeScale = 0f;
 
-    // 3. Find and show the Lose Panel via UiManager
-    if (uiManager != null)
-    {
-        uiManager.ShowLosePanel();
-        Debug.Log("[PlayerHealth] Successfully triggered UiManager Lose Panel.");
-    }
-    else if (UiManager.instance != null)
-    {
-        UiManager.instance.ShowLosePanel();
-        Debug.Log("[PlayerHealth] Successfully triggered UiManager.instance Lose Panel.");
-    }
-    else
-    {
-        Debug.LogError("[PlayerHealth] Could not find UiManager reference to show lose panel!");
-    }
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.EndRunAndCheckRecord();
+        }
 
-    // 4. Play death sound
-    if (deathSound != null)
-    {
-        float globalSfxVolume = (AudioManager.Instance != null) ? AudioManager.Instance.GetSFXVolume() : 1.0f;
-        audioSource.PlayOneShot(deathSound, globalSfxVolume * deathVolume);
+        if (uiManager != null)
+        {
+            uiManager.ShowLosePanel();
+        }
+        else if (UiManager.instance != null)
+        {
+            UiManager.instance.ShowLosePanel();
+        }
+
+        if (deathSound != null)
+        {
+            float globalSfxVolume = (AudioManager.Instance != null) ? AudioManager.Instance.GetSFXVolume() : 1.0f;
+            audioSource.PlayOneShot(deathSound, globalSfxVolume * deathVolume);
+        }
     }
-}
 
     public void IncreaseMaxHealth(float percentIncrease, bool healToFull = true)
     {
         float bonusHealth = maxHealth * (percentIncrease / 100f);
         maxHealth += bonusHealth;
 
-        if (healToFull)
-        {
-            currentHealth = maxHealth; 
-        }
-        else
-        {
-            currentHealth += bonusHealth; 
-        }
+        if (healToFull) currentHealth = maxHealth; 
+        else currentHealth += bonusHealth; 
 
         UpdateUIHealth();
-        Debug.Log($"Max Health increased by {percentIncrease}%! New Max Health: {maxHealth}");
     }
 
     public void AddRegeneration(float amountPerSecond)
     {
         regenAmountPerSecond += amountPerSecond;
-        Debug.Log($"Regeneration increased! Current Regen: {regenAmountPerSecond} HP/sec");
     }
 }

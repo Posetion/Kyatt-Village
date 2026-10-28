@@ -50,7 +50,9 @@ MonoBehaviour:
   - Room3
   - Room4
   - Room5
+  - Room6
+  - Room7
+  - Room8
+  - Room9
   shopScene: Shop
-  bossScene: FinalBossScene
   roomsBeforeShop: 5
-  roomsBeforeBoss: 15
