@@ -8,13 +8,7 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="JoystickLook">
-            <ui:VisualElement name="JoystickBackground">
-                <ui:VisualElement name="JoystickHandle" picking-mode="Ignore" usage-hints="DynamicTransform" class="touchscreen-button">
-                    <ui:VisualElement name="JoystickIcon" class="button-icon" />
-                </ui:VisualElement>
-            </ui:VisualElement>
-        </ui:VisualElement>
+        <ui:VisualElement name="JoystickLook" />
         <ui:VisualElement name="ButtonJump" class="touchscreen-button">
             <ui:VisualElement name="ButtonImage" class="button-icon" style="flex-grow: 1;" />
         </ui:VisualElement>

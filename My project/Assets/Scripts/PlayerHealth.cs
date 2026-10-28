@@ -5,6 +5,13 @@ public class PlayerHealth : MonoBehaviour
     [Header("Player Reference")]
     [SerializeField] private GameObject player; 
 
+    private bool hasSpunOnAppear = false;
+    private float spinTimer = 0f;
+    [Header("Arrow Spin Settings")]
+    [SerializeField] private float spinDuration = 1.0f; // How long the spin lasts in seconds
+    [SerializeField] private float spinSpeed = 720f;   // Degrees per second (720 = 2 full rotations)
+
+
     [Header("Game Manager Reference")]
     [SerializeField] private GameManager gameManager; 
 
@@ -12,10 +19,10 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private UiManager uiManager; 
 
     [Header("Exit Objective & Arrow")]
-    [Tooltip("Drag the 2D arrow sprite GameObject here.")]
+    [Tooltip("Drag the 3D arrow GameObject (nested in armature) here.")]
     [SerializeField] private GameObject playerArrow;
-    [Tooltip("Height offset above the player's head.")]
-    [SerializeField] private Vector3 arrowOffset = new Vector3(0f, 1.5f, 0f);
+    [Tooltip("Height offset if needed (leave 0,0,0 if already positioned on head bone).")]
+    [SerializeField] private Vector3 arrowOffset = Vector3.zero;
     private FinishZone selectedExitZone;
 
     [Header("Regeneration")]
@@ -66,7 +73,7 @@ public class PlayerHealth : MonoBehaviour
     [Range(0f, 1f)] public float attackedVolume = 1.0f;
     
     public AudioClip deathSound;
-    [Range(0f, 1f)] public float deathVolume = 1.0f;     
+    [Range(0f, 1f)] public float deathVolume = 1.0f;    
 
     private float lastHurtSoundTime = -999f; 
     private float hurtSoundCooldown = 2.5f; 
@@ -94,14 +101,13 @@ public class PlayerHealth : MonoBehaviour
         if (vfxSpawnPoint == null) vfxSpawnPoint = transform;
         if (uiManager == null) uiManager = UiManager.instance;
 
-        // Unparent the arrow so player flipping/rotation doesn't break its tracking
+        // Keep it hidden at start. Respects your armature setup!
         if (playerArrow != null)
         {
-            playerArrow.transform.SetParent(null);
             playerArrow.SetActive(false);
         }
 
-        // Randomly select one exit zone script out of the available ones (2 to 4)
+        // Randomly select one exit zone script out of the available ones
         SelectRandomExitZone();
 
         UpdateUIHealth();
@@ -142,28 +148,55 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void CheckEnemiesAndHandleArrow()
+  private void CheckEnemiesAndHandleArrow()
     {
         if (gameManager == null || selectedExitZone == null || playerArrow == null) return;
 
-        // Check GameManager's enemy defeat status
+        // Check GameManager's enemy defeat status using your property
         bool allEnemiesCleared = gameManager.AreAllEnemiesDefeated;
 
-        // Toggle arrow visibility based on GameManager
-        playerArrow.SetActive(allEnemiesCleared);
-
-        // If all enemies are defeated, keep the arrow locked to the player and continuously pointing at the exit
-        if (allEnemiesCleared)
+        // If enemies are NOT cleared, reset the spin trigger so it spins again next time
+        if (!allEnemiesCleared)
         {
-            // Keep arrow positioned right above the player
-            playerArrow.transform.position = transform.position + arrowOffset;
+            hasSpunOnAppear = false;
+            spinTimer = 0f;
+            playerArrow.SetActive(false);
+            return;
+        }
 
-            // Continuously calculate angle toward the exit zone
-            Vector3 direction = selectedExitZone.transform.position - playerArrow.transform.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        // If they ARE cleared and the arrow wasn't active yet, turn it on and start the spin timer
+        if (!playerArrow.activeSelf)
+        {
+            playerArrow.SetActive(true);
+            hasSpunOnAppear = false;
+            spinTimer = spinDuration;
+        }
+
+        // Handle the spin effect when it first appears
+        if (!hasSpunOnAppear)
+        {
+            spinTimer -= Time.deltaTime;
             
-            // Apply rotation (+ 180f accounts for your left-pointing arrow sprite)
-            playerArrow.transform.rotation = Quaternion.Euler(0, 0, angle + 180f);
+            // Spin around the Y-axis (or whichever local axis you prefer)
+            playerArrow.transform.Rotate(Vector3.up, spinSpeed * Time.deltaTime, Space.Self);
+
+            if (spinTimer <= 0f)
+            {
+                hasSpunOnAppear = true; // Spin finished, move to pointing mode
+            }
+        }
+        else
+        {
+            // Once the spin is done, continuously point toward the active exit zone
+            Vector3 direction = selectedExitZone.transform.position - playerArrow.transform.position;
+
+            // OPTIONAL: Uncomment if you want the arrow to only rotate horizontally (flat compass style)
+            // direction.y = 0f;
+
+            if (direction != Vector3.zero)
+            {
+                playerArrow.transform.rotation = Quaternion.LookRotation(direction);
+            }
         }
     }
 

@@ -414,8 +414,8 @@ MonoBehaviour:
   attackDamage: 20
   attackCooldown: 1
   attackAnimationDuration: 0.5
-  speedScalingPerRoom: 0.3
-  healthScalingPerRoom: 0.3
+  speedScalingPerRoom: 1.2
+  healthScalingPerRoom: 1.2
   damageScalingPerRoom: 2
   attackedSound: {fileID: 8300000, guid: 918e88d621e3a8449b4231be8dc3cb4e, type: 3}
   attackedVolume: 0.2
@@ -431,8 +431,8 @@ MonoBehaviour:
   deathVFXOffset: {x: 0, y: 10, z: 0}
   vfxDestroyTime: 3
   coinPrefab: {fileID: 4466815149108086827, guid: 607610fa5fb06f34e9e408b0c56d4df9, type: 3}
-  minCoins: 5
-  maxCoins: 1
+  minCoins: 1
+  maxCoins: 4
   coinScatterRadius: 1.2
   coinPopForce: 15
   coinSpawnOffset: {x: 0, y: 10, z: 0}

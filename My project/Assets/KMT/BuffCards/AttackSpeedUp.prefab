@@ -185,7 +185,7 @@ MonoBehaviour:
   powerUpIcon: {fileID: 21300000, guid: 627f0cddf6e7c3349b377782a7031ecc, type: 3}
   powerUpCost: 75
   costTextUI: {fileID: 1344285306208598011}
-  attackSpeedIncreasePercent: 5
+  attackSpeedIncreasePercent: 10
 --- !u!1 &1979969944734496096
 GameObject:
   m_ObjectHideFlags: 0

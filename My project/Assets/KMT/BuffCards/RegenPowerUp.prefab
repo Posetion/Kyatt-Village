@@ -185,7 +185,7 @@ MonoBehaviour:
   powerUpIcon: {fileID: 21300000, guid: 1ac5cf198d0838b499af872590c4c26f, type: 3}
   powerUpCost: 75
   costTextUI: {fileID: 6674183348960462410}
-  regenIncreaseAmount: 5
+  regenIncreaseAmount: 2
 --- !u!1 &1979969944734496096
 GameObject:
   m_ObjectHideFlags: 0

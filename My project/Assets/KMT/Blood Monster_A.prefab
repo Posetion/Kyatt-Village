@@ -414,6 +414,9 @@ MonoBehaviour:
   attackDamage: 20
   attackCooldown: 1
   attackAnimationDuration: 0.5
+  speedScalingPerRoom: 0.8
+  healthScalingPerRoom: 1
+  damageScalingPerRoom: 2
   attackedSound: {fileID: 8300000, guid: 918e88d621e3a8449b4231be8dc3cb4e, type: 3}
   attackedVolume: 0.2
   attackSound: {fileID: 8300000, guid: 6023e10bfe3a1c64d9f618bf938a2f21, type: 3}
@@ -429,7 +432,7 @@ MonoBehaviour:
   vfxDestroyTime: 3
   coinPrefab: {fileID: 4466815149108086827, guid: 607610fa5fb06f34e9e408b0c56d4df9, type: 3}
   minCoins: 3
-  maxCoins: 6
+  maxCoins: 4
   coinScatterRadius: 2
   coinPopForce: 15
   coinSpawnOffset: {x: 0, y: 10, z: 0}

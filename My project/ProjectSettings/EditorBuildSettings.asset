@@ -30,17 +30,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Room7.unity
     guid: 277f3e3809f301a45b38921f277a9486
   - enabled: 1
+    path: Assets/Scenes/Room8.unity
+    guid: 718e47ec84aacea4495d748eaba6fbd2
+  - enabled: 1
+    path: Assets/Scenes/Room9.unity
+    guid: fdee2981cc1efd441a80a2371a95c431
+  - enabled: 1
+    path: Assets/Scenes/Room10.unity
+    guid: f97feaf0be5ece4438aec98f15fdcfc7
+  - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: 79b1b5fee1c5a4c46ac66935974296a2
-  - enabled: 1
-    path: Assets/Scenes/SecretBossFight.unity
-    guid: 8ea8c4b696b1ce041bfa9cc7b8e61d8b
-  - enabled: 1
-    path: Assets/Scenes/FinalExitBoss.unity
-    guid: 6e17288dd47f9484baae20d626a04e3e
-  - enabled: 0
-    path: Assets/Scenes/Chest Scene.unity
-    guid: b769751a86d967845af080637bb55383
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 96dd646f0c8c2974a909322670a188dc, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}
