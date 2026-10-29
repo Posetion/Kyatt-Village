@@ -1790,7 +1790,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 1
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -6206,7 +6206,7 @@ Transform:
   m_GameObject: {fileID: 5279222370106047221}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -691.93414, y: 511.08066, z: -236.74368}
+  m_LocalPosition: {x: -863, y: 511.08066, z: -236.74368}
   m_LocalScale: {x: 2.8193834, y: 2.8193834, z: 2.8193834}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7155,7 +7155,7 @@ Transform:
   m_GameObject: {fileID: 6274709583555166086}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -777.54346, y: 425.2705, z: -161.60126}
+  m_LocalPosition: {x: -962, y: 425.2705, z: -161.60126}
   m_LocalScale: {x: 12.427185, y: 12.427185, z: 12.427185}
   m_ConstrainProportionsScale: 0
   m_Children:

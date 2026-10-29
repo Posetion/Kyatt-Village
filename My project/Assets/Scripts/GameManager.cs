@@ -406,6 +406,12 @@ public class GameManager : MonoBehaviour
 
     public void ResetPlayerStatsForNewRun()
     {
+        ApplyPermanentUpgrades();
+        ResetRunStats();
+    }
+
+    public void ResetAllProgress()
+    {
         permanentUpgradePoints = 0;
         movementSpeedUpgradeLevel = 0;
         attackDamageUpgradeLevel = 0;
@@ -419,7 +425,11 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt(defenseUpgradeKey, defenseUpgradeLevel);
         PlayerPrefs.Save();
 
-        ApplyPermanentUpgrades();
+        ResetPlayerStatsForNewRun();
+    }
+
+    private void ResetRunStats()
+    {
         playerCurrentHealth = playerMaxHealth;
         playerAttackSpeed = startingPlayerAttackSpeed;
         playerLuck = startingPlayerLuck;

@@ -125,7 +125,7 @@ public class SettingUI : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.ResetPlayerStatsForNewRun();
+            GameManager.Instance.ResetAllProgress();
         }
 
         for (int i = 1; i <= 3; i++)
@@ -135,6 +135,6 @@ public class SettingUI : MonoBehaviour
         }
 
         PlayerPrefs.Save();
-        SceneManager.LoadScene("TitleScene");
+        SceneManager.LoadScene("Title");
     }
 }

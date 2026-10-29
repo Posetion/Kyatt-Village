@@ -116,7 +116,7 @@ public class TitleUI : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.ResetPlayerStatsForNewRun();
+            GameManager.Instance.ResetAllProgress();
         }
 
         if (SceneController.Instance != null)
