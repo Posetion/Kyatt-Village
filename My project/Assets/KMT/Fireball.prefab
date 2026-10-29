@@ -4780,7 +4780,7 @@ MonoBehaviour:
   attackCooldown: 0.2
   contactDamage: 25
   explosionDamage: 25
-  explosionRadius: 5
+  explosionRadius: 2.5
   attackedSound: {fileID: 8300000, guid: 918e88d621e3a8449b4231be8dc3cb4e, type: 3}
   attackedVolume: 0.2
   deathSound: {fileID: 8300000, guid: aa999d6e4256bc3499626835260560f5, type: 3}
@@ -4789,8 +4789,8 @@ MonoBehaviour:
   deathVFX: {fileID: 1247311384876784, guid: fd8bef651bf3bbd4a9e10c7293c32b07, type: 3}
   vfxDestroyTime: 3
   deathGroundCircleVFXPrefab: {fileID: 100004, guid: cbcae22ef4df95548bad635bba129ea6, type: 3}
-  deathCircleSpawnCount: 15
-  deathCircleRadius: 3
+  deathCircleSpawnCount: 30
+  deathCircleRadius: 5
   deathCircleDuration: 5
   coinPrefab: {fileID: 4466815149108086827, guid: 607610fa5fb06f34e9e408b0c56d4df9, type: 3}
   minCoins: 5
