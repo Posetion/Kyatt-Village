@@ -412,7 +412,7 @@ MonoBehaviour:
   attackDamage: 20
   attackCooldown: 1
   attackAnimationDuration: 0.5
-  speedScalingPerRoom: 1.2
+  speedScalingPerRoom: 0.9
   healthScalingPerRoom: 0.05
   damageScalingPerRoom: 5
   attackedSound: {fileID: 8300000, guid: 918e88d621e3a8449b4231be8dc3cb4e, type: 3}

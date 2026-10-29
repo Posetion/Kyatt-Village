@@ -15,6 +15,7 @@ public class SceneController : MonoBehaviour
     [SerializeField] private int roomsBeforeShop = 5;
 
     private int roomCount = 0;
+    private bool isLoadingNextRoom;
 
     private void Awake()
     {
@@ -27,6 +28,21 @@ public class SceneController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        isLoadingNextRoom = false;
     }
 
     // ==========================================
@@ -44,20 +60,32 @@ public class SceneController : MonoBehaviour
 
     public void LoadNextRoom()
     {
-        roomCount++;
-        Debug.Log("Room completed: " + roomCount);
+        if (isLoadingNextRoom) return;
 
+        int nextRoomCount = roomCount + 1;
+        bool goingToShop = roomsBeforeShop > 0 && nextRoomCount % roomsBeforeShop == 0;
+        string destination = goingToShop ? shopScene : ChooseRandomRoom();
+        if (string.IsNullOrEmpty(destination)) return;
 
-        // Shop every X rooms
-        if (roomCount % roomsBeforeShop == 0)
+        isLoadingNextRoom = true;
+
+        if (SceneManager.GetActiveScene().name != shopScene &&
+            GameManager.Instance != null &&
+            GameManager.Instance.AreAllEnemiesDefeated)
         {
-            Debug.Log("Going to Shop!");
-            SceneManager.LoadScene(shopScene);
-            return;
+            GameManager.Instance.AwardPermanentUpgradePointForCompletedMap();
         }
 
-        // Random normal room (avoiding repeat of current room)
-        LoadRandomRoom();
+        roomCount = nextRoomCount;
+        Debug.Log("Room completed: " + roomCount);
+
+        // Shop every X rooms
+        if (goingToShop)
+        {
+            Debug.Log("Going to Shop!");
+        }
+
+        SceneManager.LoadScene(destination);
     }
 
     // ==========================================
@@ -66,17 +94,25 @@ public class SceneController : MonoBehaviour
 
     private void LoadRandomRoom()
     {
+        string chosenRoom = ChooseRandomRoom();
+        if (!string.IsNullOrEmpty(chosenRoom))
+        {
+            SceneManager.LoadScene(chosenRoom);
+        }
+    }
+
+    private string ChooseRandomRoom()
+    {
         if (roomScenes == null || roomScenes.Length == 0)
         {
             Debug.LogError("No room scenes assigned in SceneController!");
-            return;
+            return null;
         }
 
         // If there's only 1 room available in the list, it has to load that one
         if (roomScenes.Length == 1)
         {
-            SceneManager.LoadScene(roomScenes[0]);
-            return;
+            return roomScenes[0];
         }
 
         string currentSceneName = SceneManager.GetActiveScene().name;
@@ -93,7 +129,7 @@ public class SceneController : MonoBehaviour
         } while (chosenRoom == currentSceneName && safetyLoop < 100);
 
         Debug.Log("Loading random room: " + chosenRoom);
-        SceneManager.LoadScene(chosenRoom);
+        return chosenRoom;
     }
 
     // ==========================================
@@ -112,6 +148,7 @@ public class SceneController : MonoBehaviour
     public void ResetRooms()
     {
         roomCount = 0;
+        isLoadingNextRoom = false;
     }
 
     // ==========================================
@@ -121,6 +158,7 @@ public class SceneController : MonoBehaviour
    public void StartNewRun()
     {
         roomCount = 0;
+        isLoadingNextRoom = false;
 
         if (GameManager.Instance != null)
         {

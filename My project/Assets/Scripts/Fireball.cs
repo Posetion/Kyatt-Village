@@ -53,7 +53,9 @@ public class Fireball : MonoBehaviour
     private float lastAttackTime = -999f;
     private Transform player;
     private AudioSource audioSource;
+    private Rigidbody body;
     private bool isDead = false;
+    private bool warnedPlayerNotFound;
 
     void Start()
     {
@@ -72,6 +74,15 @@ public class Fireball : MonoBehaviour
 
         FindPlayer();
 
+        body = GetComponent<Rigidbody>();
+        if (body == null)
+        {
+            body = gameObject.AddComponent<Rigidbody>();
+        }
+
+        body.isKinematic = true;
+        body.useGravity = false;
+
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
@@ -85,19 +96,55 @@ public class Fireball : MonoBehaviour
     {
         if (isDead) return;
 
-        if (player == null) FindPlayer();
-        if (player == null) return;
+        if (player == null || !player.gameObject.activeInHierarchy) FindPlayer();
+    }
+
+    void FixedUpdate()
+    {
+        if (isDead || player == null || !player.gameObject.activeInHierarchy) return;
 
         Vector3 targetPosition = player.position + Vector3.up * targetHeight;
-        Vector3 direction = (targetPosition - transform.position).normalized;
-        transform.position += direction * moveSpeed * Time.deltaTime;
-        transform.LookAt(targetPosition);
+        Vector3 direction = targetPosition - transform.position;
+        if (direction.sqrMagnitude > 0.0001f)
+        {
+            body.MovePosition(Vector3.MoveTowards(
+                transform.position,
+                targetPosition,
+                moveSpeed * Time.fixedDeltaTime));
+            body.MoveRotation(Quaternion.LookRotation(direction));
+        }
     }
 
     private void FindPlayer()
     {
-        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-        if (playerObject != null) player = playerObject.transform;
+        GameObject playerObject = GameObject.Find("PlayerArmature");
+        if (playerObject == null)
+        {
+            playerObject = GameObject.FindGameObjectWithTag("Player");
+        }
+
+        if (playerObject == null)
+        {
+            GameObject[] taggedPlayers = GameObject.FindGameObjectsWithTag("Player");
+            if (taggedPlayers.Length > 0) playerObject = taggedPlayers[0];
+        }
+
+        if (playerObject == null)
+        {
+            if (!warnedPlayerNotFound)
+            {
+                Debug.LogWarning(gameObject.name + " could not find an active PlayerArmature or Player target.", this);
+                warnedPlayerNotFound = true;
+            }
+
+            return;
+        }
+
+        Transform armature = playerObject.transform.Find("PlayerArmature");
+        if (armature == null) armature = playerObject.transform.Find("Armature");
+
+        player = armature != null ? armature : playerObject.transform;
+        warnedPlayerNotFound = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -105,7 +152,9 @@ public class Fireball : MonoBehaviour
         if (isDead) return;
 
         // 1. Check if the player body itself touched the fireball
-        if (other.CompareTag("Player") || (player != null && other.transform.IsChildOf(player)))
+        if (other.CompareTag("Player") ||
+            (player != null &&
+             (other.transform.IsChildOf(player) || player.IsChildOf(other.transform))))
         {
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
             if (playerHealth == null)

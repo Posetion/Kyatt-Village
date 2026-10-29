@@ -1,4 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem;
+#endif
 
 public class Shopkeeper : MonoBehaviour
 {
@@ -16,7 +22,8 @@ public class Shopkeeper : MonoBehaviour
     [Tooltip("(Optional) Drag a prompt UI like 'Press E to Talk' or mobile touch icon here.")]
     [SerializeField] private GameObject interactionPromptUI;
 
-    private bool isPlayerInZone = false;
+    private readonly HashSet<Collider> playerCollidersInZone = new HashSet<Collider>();
+    private bool isPlayerInZone;
 
     private void Start()
     {
@@ -78,11 +85,70 @@ public class Shopkeeper : MonoBehaviour
 
     private void Update()
     {
-        // If the player is in the zone and presses 'E' on PC, toggle the shop
-        if (isPlayerInZone && Input.GetKeyDown(KeyCode.E))
+        if (!isPlayerInZone) return;
+
+#if ENABLE_INPUT_SYSTEM
+        if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            ToggleShop();
+            return;
+        }
+
+        if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
+        {
+            UnityEngine.InputSystem.Controls.TouchControl touch = Touchscreen.current.primaryTouch;
+            int touchId = (int)touch.touchId.ReadValue();
+            if (!IsPointerOverUI(touchId) && IsTapOnKeeper(touch.position.ReadValue()))
+            {
+                ToggleShop();
+            }
+
+            return;
+        }
+
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame &&
+            !IsPointerOverUI(-1) && IsTapOnKeeper(Mouse.current.position.ReadValue()))
         {
             ToggleShop();
         }
+#elif ENABLE_LEGACY_INPUT_MANAGER
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ToggleShop();
+            return;
+        }
+
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            UnityEngine.Touch touch = Input.GetTouch(0);
+            if (!IsPointerOverUI(touch.fingerId) && IsTapOnKeeper(touch.position))
+            {
+                ToggleShop();
+            }
+        }
+        else if (Input.GetMouseButtonDown(0) && !IsPointerOverUI(-1) && IsTapOnKeeper(Input.mousePosition))
+        {
+            ToggleShop();
+        }
+#endif
+    }
+
+    private bool IsPointerOverUI(int pointerId)
+    {
+        return EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(pointerId);
+    }
+
+    private bool IsTapOnKeeper(Vector2 screenPosition)
+    {
+        Camera mainCamera = Camera.main;
+        SpriteRenderer keeperRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (mainCamera == null || keeperRenderer == null) return false;
+
+        Ray ray = mainCamera.ScreenPointToRay(screenPosition);
+        Plane keeperPlane = new Plane(mainCamera.transform.forward, keeperRenderer.bounds.center);
+        if (!keeperPlane.Raycast(ray, out float distance)) return false;
+
+        return keeperRenderer.bounds.Contains(ray.GetPoint(distance));
     }
 
     // Call this method from a mobile UI Button's OnClick() event
@@ -104,22 +170,33 @@ public class Shopkeeper : MonoBehaviour
 
         if (shopPanel != null)
         {
-            bool isActive = shopPanel.activeSelf;
-            shopPanel.SetActive(!isActive);
-
-            // Optional: Print current coins to verify it's listening to GameManager
-            if (gameManager != null)
-            {
-                Debug.Log($"Shop opened! Current Player Coins: {gameManager.totalCoins}");
-            }
-            else
-            {
-                Debug.LogWarning("Shop opened, but GameManager reference is missing!");
-            }
+            SetShopOpen(!shopPanel.activeSelf);
         }
         else
         {
             Debug.LogError("ShopPanel reference is missing on the Shopkeeper script! Please drag your Shop UI Panel into the Shopkeeper Inspector slot.");
+        }
+    }
+
+    private void SetShopOpen(bool open)
+    {
+        if (shopPanel == null)
+        {
+            InitializeReferences();
+        }
+
+        if (shopPanel == null || shopPanel.activeSelf == open) return;
+
+        shopPanel.SetActive(open);
+        if (!open) return;
+
+        if (gameManager != null)
+        {
+            Debug.Log($"Shop opened! Current Player Coins: {gameManager.totalCoins}");
+        }
+        else
+        {
+            Debug.LogWarning("Shop opened, but GameManager reference is missing!");
         }
     }
 
@@ -151,32 +228,31 @@ public class Shopkeeper : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerInZone = true;
+        if (!other.CompareTag("Player") || !playerCollidersInZone.Add(other)) return;
 
-            if (interactionPromptUI != null)
-            {
-                interactionPromptUI.SetActive(true);
-            }
+        bool firstEntry = playerCollidersInZone.Count == 1;
+        isPlayerInZone = true;
+
+        if (interactionPromptUI != null)
+        {
+            interactionPromptUI.SetActive(true);
         }
+
+        if (firstEntry) SetShopOpen(true);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (!other.CompareTag("Player") || !playerCollidersInZone.Remove(other)) return;
+        if (playerCollidersInZone.Count > 0) return;
+
+        isPlayerInZone = false;
+
+        if (interactionPromptUI != null)
         {
-            isPlayerInZone = false;
-
-            if (interactionPromptUI != null)
-            {
-                interactionPromptUI.SetActive(false);
-            }
-
-            if (shopPanel != null)
-            {
-                shopPanel.SetActive(false);
-            }
+            interactionPromptUI.SetActive(false);
         }
+
+        SetShopOpen(false);
     }
 }

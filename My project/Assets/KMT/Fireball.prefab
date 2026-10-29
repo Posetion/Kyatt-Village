@@ -4777,10 +4777,10 @@ MonoBehaviour:
   targetHeight: 1
   maxHealth: 100
   healthBar: {fileID: 7291159615508112284}
-  attackDamage: 25
   attackCooldown: 0.2
-  explosionDamage: 50
-  explosionRadius: 10
+  contactDamage: 25
+  explosionDamage: 25
+  explosionRadius: 5
   attackedSound: {fileID: 8300000, guid: 918e88d621e3a8449b4231be8dc3cb4e, type: 3}
   attackedVolume: 0.2
   deathSound: {fileID: 8300000, guid: aa999d6e4256bc3499626835260560f5, type: 3}

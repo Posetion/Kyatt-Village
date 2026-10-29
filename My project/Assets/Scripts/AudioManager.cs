@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -39,6 +40,7 @@ public class AudioManager : MonoBehaviour
     private float sfxVolume;
     private bool musicMuted = false;
     private bool sfxMuted = false;
+    private Coroutine musicLoadCoroutine;
 
     private void Awake()
     {
@@ -90,6 +92,7 @@ public class AudioManager : MonoBehaviour
             musicAudioSource = gameObject.AddComponent<AudioSource>();
         }
         musicAudioSource.enabled = true;
+        musicAudioSource.playOnAwake = false;
 
         if (sfxAudioSource == null)
         {
@@ -107,6 +110,7 @@ public class AudioManager : MonoBehaviour
             natureAudioSource = gameObject.AddComponent<AudioSource>();
         }
         natureAudioSource.enabled = true;
+        natureAudioSource.playOnAwake = false;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -128,7 +132,7 @@ public class AudioManager : MonoBehaviour
                 StopMusic();
             }
         }
-        else if (sceneName == shopSceneName)
+        else if (sceneName == shopSceneName || sceneName == "Shop")
         {
             if (shopMusicClip != null)
             {
@@ -205,17 +209,64 @@ public class AudioManager : MonoBehaviour
         if (!musicAudioSource.enabled)
             musicAudioSource.enabled = true;
 
-        if (musicAudioSource.clip == clip && musicAudioSource.isPlaying)
+        if (musicAudioSource.clip == clip && (musicAudioSource.isPlaying || musicLoadCoroutine != null))
             return;
 
+        if (musicLoadCoroutine != null)
+        {
+            StopCoroutine(musicLoadCoroutine);
+            musicLoadCoroutine = null;
+        }
+
+        musicAudioSource.Stop();
         musicAudioSource.clip = clip;
         musicAudioSource.loop = true;
         musicAudioSource.volume = musicMuted ? 0f : musicVolume;
-        musicAudioSource.Play();
+
+        if (clip.loadState == AudioDataLoadState.Unloaded)
+        {
+            clip.LoadAudioData();
+        }
+
+        if (clip.loadState == AudioDataLoadState.Loaded)
+        {
+            musicAudioSource.Play();
+            return;
+        }
+
+        musicLoadCoroutine = StartCoroutine(PlayMusicWhenLoaded(clip));
+    }
+
+    private IEnumerator PlayMusicWhenLoaded(AudioClip clip)
+    {
+        while (clip.loadState == AudioDataLoadState.Loading)
+        {
+            yield return null;
+        }
+
+        if (clip.loadState != AudioDataLoadState.Loaded)
+        {
+            Debug.LogError($"Music clip '{clip.name}' failed to load (state: {clip.loadState}).");
+            musicLoadCoroutine = null;
+            yield break;
+        }
+
+        if (musicAudioSource != null && musicAudioSource.clip == clip)
+        {
+            musicAudioSource.Play();
+        }
+
+        musicLoadCoroutine = null;
     }
 
     public void StopMusic()
     {
+        if (musicLoadCoroutine != null)
+        {
+            StopCoroutine(musicLoadCoroutine);
+            musicLoadCoroutine = null;
+        }
+
         if (musicAudioSource != null)
         {
             musicAudioSource.Stop();

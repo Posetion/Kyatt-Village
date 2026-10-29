@@ -225,6 +225,19 @@ public class UiManager : MonoBehaviour
         }
     }
 
+    public void OnContinueButton()
+    {
+        Time.timeScale = 1f;
+
+        if (SceneController.Instance == null)
+        {
+            Debug.LogError("[UiManager] Cannot continue because SceneController.Instance is missing.");
+            return;
+        }
+
+        SceneController.Instance.StartNewRun();
+    }
+
     // --- LOSE / GAME OVER PANEL CONTROLS ---
 
     public void ShowLosePanel()
@@ -389,6 +402,7 @@ public class UiManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         if (pauseMenu != null) pauseMenu.SetActive(true);
+        Debug.Log("[UiManager] PauseButton() called. Game paused and pause menu activated.");
     }
 
     public void TogglePause()

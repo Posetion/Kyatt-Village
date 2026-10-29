@@ -17,7 +17,8 @@ public class EnemyAI : MonoBehaviour
     public float attackAnimationDuration = 0.5f;
 
     [Header("Room Difficulty Scaling")]
-    [SerializeField] private float speedScalingPerRoom = 0.05f;
+    [SerializeField] private float speedScalingPerRoom = 0.02f;
+    [SerializeField] private float maxSpeedMultiplier = 1.25f;
     [SerializeField] private float healthScalingPerRoom = 0.05f;
     [SerializeField] private float damageScalingPerRoom = 5f;
 
@@ -76,7 +77,8 @@ public class EnemyAI : MonoBehaviour
 
         int roomCount = (SceneController.Instance != null) ? SceneController.Instance.GetRoomCount() : 0;
 
-        moveSpeed *= 1f + (roomCount * speedScalingPerRoom);
+        float speedMultiplier = Mathf.Min(1f + (roomCount * speedScalingPerRoom), maxSpeedMultiplier);
+        moveSpeed *= speedMultiplier;
         maxHealth *= 1f + (roomCount * healthScalingPerRoom);
         attackDamage += roomCount * damageScalingPerRoom;
 
@@ -127,8 +129,30 @@ public class EnemyAI : MonoBehaviour
     void FindPlayer()
     {
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-        if (playerObject == null) playerObject = GameObject.Find("PlayerArmature");
-        if (playerObject != null) player = playerObject.transform;
+        if (playerObject == null)
+        {
+            playerObject = GameObject.Find("PlayerArmature");
+        }
+
+        if (playerObject == null)
+        {
+            GameObject[] taggedPlayers = GameObject.FindGameObjectsWithTag("Player");
+            if (taggedPlayers.Length > 0)
+            {
+                playerObject = taggedPlayers[0];
+            }
+        }
+
+        if (playerObject != null)
+        {
+            Transform armature = playerObject.transform.Find("PlayerArmature");
+            if (armature == null)
+            {
+                armature = playerObject.transform.Find("Armature");
+            }
+
+            player = armature != null ? armature : playerObject.transform;
+        }
     }
 
     void Update()
@@ -186,13 +210,23 @@ public class EnemyAI : MonoBehaviour
             agentTypeID = navAgent.agentTypeID,
             areaMask = navAgent.areaMask
         };
+        Vector3 chaseTarget = player.position;
+        if (player != null)
+        {
+            Transform targetRoot = player;
+            if (targetRoot != null)
+            {
+                chaseTarget = targetRoot.position;
+            }
+        }
+
         float playerSampleDistance = Mathf.Max(navAgent.height * 2f, 20f);
-        if (!NavMesh.SamplePosition(player.position, out NavMeshHit playerNavMeshHit, playerSampleDistance, filter))
+        if (!NavMesh.SamplePosition(chaseTarget, out NavMeshHit playerNavMeshHit, playerSampleDistance, filter))
         {
             SetWalking(false);
             if (!warnedDestinationFailure)
             {
-                Debug.LogWarning(gameObject.name + " could not find a NavMesh position for the player.", this);
+                Debug.LogWarning(gameObject.name + " could not find a NavMesh position for the player target.", this);
                 warnedDestinationFailure = true;
             }
             return;

@@ -581,7 +581,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: estores health over time, keeping you alive during intense battles.(+5
+  m_text: Restores health over time, keeping you alive during intense battles.(+5
     HP/sec
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b6442d2bdb14527f403091eca8d72618, type: 2}

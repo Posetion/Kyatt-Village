@@ -185,7 +185,7 @@ MonoBehaviour:
   powerUpIcon: {fileID: 21300000, guid: 3caf370b5aeee15448faac0d5a345d62, type: 3}
   powerUpCost: 75
   costTextUI: {fileID: 6137646424844378489}
-  damageIncreasePercent: 5
+  damageIncreasePercent: 8
 --- !u!1 &1979969944734496096
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,7 +581,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Increase attack by 2% '
+  m_text: 'Increase attack by 8% '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b6442d2bdb14527f403091eca8d72618, type: 2}
   m_sharedMaterial: {fileID: -2822126392236557002, guid: b6442d2bdb14527f403091eca8d72618, type: 2}

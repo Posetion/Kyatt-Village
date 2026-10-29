@@ -3,9 +3,24 @@ using StarterAssets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum PermanentUpgradeType
+{
+    MovementSpeed,
+    AttackDamage,
+    MaximumHealth,
+    Defense
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
+    private const int maxPermanentUpgradeLevel = 10;
+    private const string permanentUpgradePointsKey = "PermanentUpgradePoints";
+    private const string movementSpeedUpgradeKey = "PermanentUpgrade_MovementSpeed";
+    private const string attackDamageUpgradeKey = "PermanentUpgrade_AttackDamage";
+    private const string maximumHealthUpgradeKey = "PermanentUpgrade_MaximumHealth";
+    private const string defenseUpgradeKey = "PermanentUpgrade_Defense";
 
     [Header("Scene Settings")]
     [Tooltip("Name of your shop scene where power-up selection and enemy spawns should be skipped.")]
@@ -53,8 +68,15 @@ public class GameManager : MonoBehaviour
     private float startingPlayerDefense;
     private float startingPlayerLuck;
     private float startingPlayerRegenAmount;
+    private int permanentUpgradePoints;
+    private int movementSpeedUpgradeLevel;
+    private int attackDamageUpgradeLevel;
+    private int maximumHealthUpgradeLevel;
+    private int defenseUpgradeLevel;
     private ThirdPersonController movementController;
     private float appliedMovementSpeedMultiplier = float.NaN;
+
+    public int PermanentUpgradePoints => permanentUpgradePoints;
 
     private void Awake()
     {
@@ -69,8 +91,11 @@ public class GameManager : MonoBehaviour
             startingPlayerDefense = playerDefense;
             startingPlayerLuck = playerLuck;
             startingPlayerRegenAmount = playerRegenAmount;
+
+            LoadPermanentUpgradeProgress();
+            ApplyPermanentUpgrades();
             playerCurrentHealth = playerMaxHealth;
-            
+
             // Load saved best record time on startup
             BestRunTime = PlayerPrefs.GetFloat(BestTimeKey, 0f);
         }
@@ -121,7 +146,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"[GameManager] Initialized scene. Found {expectedSpawnersCount} enemy spawner(s).");
 
-        if (currentSceneName == shopSceneName)
+        if (IsShopScene(currentSceneName))
         {
             spawnerFinished = true;
             return; 
@@ -215,7 +240,7 @@ public class GameManager : MonoBehaviour
 
         finishZones = foundZones.ToArray();
 
-        if (finishZones.Length == 0 && SceneManager.GetActiveScene().name != shopSceneName)
+        if (finishZones.Length == 0 && !IsShopScene(SceneManager.GetActiveScene().name))
         {
             Debug.LogWarning("[GameManager] No standard FinishZones found in this scene.");
         }
@@ -271,7 +296,7 @@ public class GameManager : MonoBehaviour
         if (powerUpTriggered) return;
         powerUpTriggered = true;
 
-        if (SceneManager.GetActiveScene().name == shopSceneName)
+        if (IsShopScene(SceneManager.GetActiveScene().name))
         {
             return;
         }
@@ -299,20 +324,148 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void AwardPermanentUpgradePointForCompletedMap()
+    {
+        permanentUpgradePoints++;
+        PlayerPrefs.SetInt(permanentUpgradePointsKey, permanentUpgradePoints);
+        PlayerPrefs.Save();
+        Debug.Log($"[GameManager] Map completed. Permanent upgrade points: {permanentUpgradePoints}");
+    }
+
+    public int GetPermanentUpgradeLevel(PermanentUpgradeType upgrade)
+    {
+        switch (upgrade)
+        {
+            case PermanentUpgradeType.MovementSpeed:
+                return movementSpeedUpgradeLevel;
+            case PermanentUpgradeType.AttackDamage:
+                return attackDamageUpgradeLevel;
+            case PermanentUpgradeType.MaximumHealth:
+                return maximumHealthUpgradeLevel;
+            case PermanentUpgradeType.Defense:
+                return defenseUpgradeLevel;
+            default:
+                Debug.LogError($"[GameManager] Unknown permanent upgrade: {upgrade}");
+                return 0;
+        }
+    }
+
+    public bool CanPurchasePermanentUpgrade(PermanentUpgradeType upgrade)
+    {
+        if (!System.Enum.IsDefined(typeof(PermanentUpgradeType), upgrade))
+        {
+            Debug.LogError($"[GameManager] Unknown permanent upgrade: {upgrade}");
+            return false;
+        }
+
+        return GetPermanentUpgradeLevel(upgrade) < maxPermanentUpgradeLevel &&
+               permanentUpgradePoints >= GetPermanentUpgradeCost(upgrade);
+    }
+
+    public int GetPermanentUpgradeCost(PermanentUpgradeType upgrade)
+    {
+        if (!System.Enum.IsDefined(typeof(PermanentUpgradeType), upgrade))
+        {
+            Debug.LogError($"[GameManager] Unknown permanent upgrade: {upgrade}");
+            return 0;
+        }
+
+        return GetPermanentUpgradeLevel(upgrade) + 1;
+    }
+
+    public bool TryPurchasePermanentUpgrade(PermanentUpgradeType upgrade)
+    {
+        if (!CanPurchasePermanentUpgrade(upgrade)) return false;
+
+        permanentUpgradePoints -= GetPermanentUpgradeCost(upgrade);
+
+        switch (upgrade)
+        {
+            case PermanentUpgradeType.MovementSpeed:
+                movementSpeedUpgradeLevel++;
+                PlayerPrefs.SetInt(movementSpeedUpgradeKey, movementSpeedUpgradeLevel);
+                break;
+            case PermanentUpgradeType.AttackDamage:
+                attackDamageUpgradeLevel++;
+                PlayerPrefs.SetInt(attackDamageUpgradeKey, attackDamageUpgradeLevel);
+                break;
+            case PermanentUpgradeType.MaximumHealth:
+                maximumHealthUpgradeLevel++;
+                PlayerPrefs.SetInt(maximumHealthUpgradeKey, maximumHealthUpgradeLevel);
+                break;
+            case PermanentUpgradeType.Defense:
+                defenseUpgradeLevel++;
+                PlayerPrefs.SetInt(defenseUpgradeKey, defenseUpgradeLevel);
+                break;
+        }
+
+        PlayerPrefs.SetInt(permanentUpgradePointsKey, permanentUpgradePoints);
+        PlayerPrefs.Save();
+        return true;
+    }
+
     public void ResetPlayerStatsForNewRun()
     {
-        playerMaxHealth = startingPlayerMaxHealth;
-        playerCurrentHealth = startingPlayerMaxHealth;
-        playerDamage = startingPlayerDamage;
+        permanentUpgradePoints += GetPointsSpentOnPermanentUpgrades();
+        movementSpeedUpgradeLevel = 0;
+        attackDamageUpgradeLevel = 0;
+        maximumHealthUpgradeLevel = 0;
+        defenseUpgradeLevel = 0;
+
+        PlayerPrefs.SetInt(permanentUpgradePointsKey, permanentUpgradePoints);
+        PlayerPrefs.SetInt(movementSpeedUpgradeKey, movementSpeedUpgradeLevel);
+        PlayerPrefs.SetInt(attackDamageUpgradeKey, attackDamageUpgradeLevel);
+        PlayerPrefs.SetInt(maximumHealthUpgradeKey, maximumHealthUpgradeLevel);
+        PlayerPrefs.SetInt(defenseUpgradeKey, defenseUpgradeLevel);
+        PlayerPrefs.Save();
+
+        ApplyPermanentUpgrades();
+        playerCurrentHealth = playerMaxHealth;
         playerAttackSpeed = startingPlayerAttackSpeed;
-        playerMovementSpeed = startingPlayerMovementSpeed;
-        playerDefense = startingPlayerDefense;
         playerLuck = startingPlayerLuck;
         playerRegenAmount = startingPlayerRegenAmount;
         totalCoins = 0;
         levelElapsedTime = 0f;
         collectedPowerUpIcons.Clear();
+        expectedSpawnersCount = 0;
+        registeredSpawnersCount = 0;
+        totalEnemies = 0;
+        defeatedEnemies = 0;
+        spawnerFinished = false;
+        powerUpTriggered = false;
+        currentSceneName = "";
+        isInitialized = false;
         ApplyMovementSpeedToPlayer();
+    }
+
+    private int GetPointsSpentOnPermanentUpgrades()
+    {
+        return GetPointsSpentAtLevel(movementSpeedUpgradeLevel)
+            + GetPointsSpentAtLevel(attackDamageUpgradeLevel)
+            + GetPointsSpentAtLevel(maximumHealthUpgradeLevel)
+            + GetPointsSpentAtLevel(defenseUpgradeLevel);
+    }
+
+    private int GetPointsSpentAtLevel(int level)
+    {
+        return level * (level + 1) / 2;
+    }
+
+    private void LoadPermanentUpgradeProgress()
+    {
+        permanentUpgradePoints = Mathf.Max(0, PlayerPrefs.GetInt(permanentUpgradePointsKey, 0));
+        movementSpeedUpgradeLevel = Mathf.Clamp(PlayerPrefs.GetInt(movementSpeedUpgradeKey, 0), 0, maxPermanentUpgradeLevel);
+        attackDamageUpgradeLevel = Mathf.Clamp(PlayerPrefs.GetInt(attackDamageUpgradeKey, 0), 0, maxPermanentUpgradeLevel);
+        maximumHealthUpgradeLevel = Mathf.Clamp(PlayerPrefs.GetInt(maximumHealthUpgradeKey, 0), 0, maxPermanentUpgradeLevel);
+        defenseUpgradeLevel = Mathf.Clamp(PlayerPrefs.GetInt(defenseUpgradeKey, 0), 0, maxPermanentUpgradeLevel);
+    }
+
+    private void ApplyPermanentUpgrades()
+    {
+        playerMovementSpeed = startingPlayerMovementSpeed * (1f + movementSpeedUpgradeLevel * 0.05f);
+        playerDamage = startingPlayerDamage * (1f + attackDamageUpgradeLevel * 0.1f);
+        playerMaxHealth = startingPlayerMaxHealth * (1f + maximumHealthUpgradeLevel * 0.1f);
+        playerDefense = startingPlayerDefense + defenseUpgradeLevel;
     }
 
     public float GetMovementSpeedMultiplier()
@@ -325,4 +478,8 @@ public class GameManager : MonoBehaviour
 // Add this public property to GameManager to check status easily
 public bool AreAllEnemiesDefeated => (totalEnemies > 0 && defeatedEnemies >= totalEnemies) || (expectedSpawnersCount == 0);
 
+private bool IsShopScene(string sceneName)
+{
+    return sceneName == shopSceneName || sceneName == "Shop";
+}
 }

@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a767ec0369e8c4c802978950a08204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7434290220409349767}
+  player: {fileID: 8535666669058924909}
   spinDuration: 1
   spinSpeed: 720
   gameManager: {fileID: 0}
@@ -262,18 +262,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2987054324331737040}
     m_Modifications:
-    - target: {fileID: 1779120067005635550, guid: 97c35bce1bda69244ad91c05798e2762, type: 3}
-      propertyPath: m_Color.b
-      value: 0.5176471
-      objectReference: {fileID: 0}
-    - target: {fileID: 1779120067005635550, guid: 97c35bce1bda69244ad91c05798e2762, type: 3}
-      propertyPath: m_Color.g
-      value: 0.19215688
-      objectReference: {fileID: 0}
-    - target: {fileID: 1779120067005635550, guid: 97c35bce1bda69244ad91c05798e2762, type: 3}
-      propertyPath: m_Color.r
-      value: 0.5647059
-      objectReference: {fileID: 0}
     - target: {fileID: 2465408189255755254, guid: 97c35bce1bda69244ad91c05798e2762, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -318,14 +306,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerArmature
       objectReference: {fileID: 0}
-    - target: {fileID: 3275125806178552587, guid: 97c35bce1bda69244ad91c05798e2762, type: 3}
-      propertyPath: m_Color.b
-      value: 0.7982173
-      objectReference: {fileID: 0}
-    - target: {fileID: 3275125806178552587, guid: 97c35bce1bda69244ad91c05798e2762, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -344,5 +324,10 @@ Transform:
 --- !u!4 &8316565412105513681 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2465408189255755254, guid: 97c35bce1bda69244ad91c05798e2762, type: 3}
+  m_PrefabInstance: {fileID: 5862705411197816615}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8535666669058924909 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2821580066001186378, guid: 97c35bce1bda69244ad91c05798e2762, type: 3}
   m_PrefabInstance: {fileID: 5862705411197816615}
   m_PrefabAsset: {fileID: 0}
