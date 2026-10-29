@@ -33,7 +33,14 @@ public class TouchscreenInput : MonoBehaviour
         var safeArea = Screen.safeArea;
 
         var root = m_Document.rootVisualElement;
+        var mobileInput = root.Q<VisualElement>("MobileInput");
+        if (mobileInput == null)
+        {
+            Debug.LogError("[TouchscreenInput] MobileInput root element was not found.");
+            return;
+        }
 
+        mobileInput.pickingMode = PickingMode.Ignore;
         root.style.position = Position.Absolute;
         root.style.left = safeArea.xMin;
         root.style.right = Screen.width - safeArea.xMax;

@@ -406,7 +406,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetPlayerStatsForNewRun()
     {
-        permanentUpgradePoints += GetPointsSpentOnPermanentUpgrades();
+        permanentUpgradePoints = 0;
         movementSpeedUpgradeLevel = 0;
         attackDamageUpgradeLevel = 0;
         maximumHealthUpgradeLevel = 0;
@@ -436,19 +436,6 @@ public class GameManager : MonoBehaviour
         currentSceneName = "";
         isInitialized = false;
         ApplyMovementSpeedToPlayer();
-    }
-
-    private int GetPointsSpentOnPermanentUpgrades()
-    {
-        return GetPointsSpentAtLevel(movementSpeedUpgradeLevel)
-            + GetPointsSpentAtLevel(attackDamageUpgradeLevel)
-            + GetPointsSpentAtLevel(maximumHealthUpgradeLevel)
-            + GetPointsSpentAtLevel(defenseUpgradeLevel);
-    }
-
-    private int GetPointsSpentAtLevel(int level)
-    {
-        return level * (level + 1) / 2;
     }
 
     private void LoadPermanentUpgradeProgress()
