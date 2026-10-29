@@ -12,6 +12,9 @@ public static class TerrainGrassRepair
     [MenuItem("Tools/Kyatt Village Repair/Restore Terrain Grass")]
     public static void RestoreTerrainGrass()
     {
+        NormalizeGrassPrefabTransform(GrassPrefabPath);
+        NormalizeGrassPrefabTransform(PoppyPrefabPath);
+
         GameObject grassPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(GrassPrefabPath);
         GameObject poppyPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(PoppyPrefabPath);
 
@@ -32,8 +35,8 @@ public static class TerrainGrassRepair
                 continue;
 
             List<DetailPrototype> prototypes = new List<DetailPrototype>(terrainData.detailPrototypes);
-            EnsurePrototype(prototypes, grassPrefab, 0.8f);
-            EnsurePrototype(prototypes, poppyPrefab, 0.45f);
+            EnsurePrototype(prototypes, grassPrefab, 1.8f);
+            EnsurePrototype(prototypes, poppyPrefab, 3.5f);
             terrainData.detailPrototypes = prototypes.ToArray();
 
             EnsureDetailMap(terrainData, FindPrototypeIndex(prototypes, grassPrefab), 5, 4);
@@ -47,6 +50,18 @@ public static class TerrainGrassRepair
         Debug.Log($"Restored grass on {repairedTerrainCount} TerrainData assets.");
     }
 
+    private static void NormalizeGrassPrefabTransform(string path)
+    {
+        GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+        if (prefab == null)
+            return;
+
+        Transform transform = prefab.transform;
+        transform.localPosition = Vector3.zero;
+        transform.localScale = Vector3.one;
+        EditorUtility.SetDirty(prefab);
+    }
+
     private static void EnsurePrototype(
         List<DetailPrototype> prototypes,
         GameObject prototypePrefab,
@@ -57,6 +72,10 @@ public static class TerrainGrassRepair
             if (prototype.prototype == prototypePrefab ||
                 (prototype.prototype != null && prototype.prototype.name == prototypePrefab.name))
             {
+                prototype.minWidth = minWidth;
+                prototype.maxWidth = minWidth * 1.5f;
+                prototype.minHeight = minWidth;
+                prototype.maxHeight = minWidth * 1.5f;
                 return;
             }
         }

@@ -186,7 +186,9 @@ public class PlayerHealth : MonoBehaviour
             Vector3 direction = selectedExitZone.transform.position - playerArrow.transform.position;
             if (direction != Vector3.zero)
             {
-                playerArrow.transform.rotation = Quaternion.LookRotation(direction);
+                playerArrow.transform.rotation =
+                    Quaternion.LookRotation(direction, Vector3.up) *
+                    Quaternion.Euler(0f, 180f, 0f);
             }
         }
     }
