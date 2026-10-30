@@ -199,32 +199,37 @@ public class EnemySpawner : MonoBehaviour
             case 0:
                 {
                     GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
-                    int count = Random.Range(minEnemies + bonus, maxEnemies + bonus + 1);
+                    int count = GetDefaultEnemyCount(bonus);
                     for (int i = 0; i < count; i++) SpawnObject(prefab);
                     break;
                 }
             case 1:
                 {
                     GameObject prefab = fireballPrefabs[Random.Range(0, fireballPrefabs.Length)];
-                    int count = Random.Range(minEnemies + bonus, maxEnemies + bonus + 1);
+                    int count = GetDefaultEnemyCount(bonus);
                     for (int i = 0; i < count; i++) SpawnObject(prefab);
                     break;
                 }
             case 2:
                 {
                     GameObject prefab = tankPrefabs[Random.Range(0, tankPrefabs.Length)];
-                    int count = Random.Range(minTanks, maxTanks + 1); 
+                    int count = GetDefaultEnemyCount(bonus);
                     for (int i = 0; i < count; i++) SpawnObject(prefab);
                     break;
                 }
             case 3:
                 {
                     GameObject prefab = elitePrefabs[Random.Range(0, elitePrefabs.Length)];
-                    int count = Random.Range(minElites, maxElites + 1);
+                    int count = GetDefaultEnemyCount(bonus);
                     for (int i = 0; i < count; i++) SpawnObject(prefab);
                     break;
                 }
         }
+    }
+
+    private int GetDefaultEnemyCount(int bonus)
+    {
+        return Random.Range(minEnemies + bonus, maxEnemies + bonus + 1);
     }
 
     private void SpawnObject(GameObject prefabToSpawn)
